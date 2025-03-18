@@ -45,7 +45,14 @@ def art():
     print(r"                             |___/                        |___/   ")
 
 def level_selector():
-    pass
+   '''
+   clear_screen()
+    print("\n Choose Your Learning Path ") 
+    print("1) Chemistry ") 
+    print("2) Statistics ") 
+    print("3) Mathematics ") 
+    print("4) Return to Main Menu")
+    '''
 
 # Main Function
 def main():
