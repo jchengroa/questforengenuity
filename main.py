@@ -84,6 +84,18 @@ def level_mathematics():
 def help_section():
     art()
     print("\n\n", "Help Section".center(65))
+    print(
+    """
+    Gold & Glory: Treasurer's Dilemma
+    > 1) Chemistry Level
+
+    Elixers & Enchantments: The Witch's Apprentice
+    > 2) Statistics Level
+
+    Brick by Brick: Mason's Quest
+    > 3) Mathematics Level
+    
+    """)
     input("Press Any Key To Exit...")
 
 # Main Function
