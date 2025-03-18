@@ -19,10 +19,6 @@ Version: 0.3 (March 18, 2025) - Cheng Roa
 > Centered Elements and Changed Cursor
 > Added Clear Screen after updates
 
-Version: 0.3.1 (March  18, 2025) - Cheng Roa
-> Fixed Bugs
-> Reorganized Menu
-> Organized Codespace Layout
 """
 
 # Import System Files
@@ -45,29 +41,50 @@ def art():
     print(r"                             |___/                        |___/   ")
 
 def level_selector():
-   clear_screen()
-    print("\n Choose Your Learning Path ") 
-    print("1) Chemistry ") 
-    print("2) Statistics ") 
-    print("3) Mathematics ") 
-    print("4) Return to Main Menu")
+
+    os.system('cls')
     
-    if choice == "1":
+    art()
+    
+    print("\n")
+    print("Choose Your Learning Path:".center(65)) 
+    print("\n")
+    print("1) Chemistry  ".center(65)) 
+    print("2) Statistics ".center(65)) 
+    print("3) Mathematics".center(65)) 
+    print("(Press Any Other Key to go back)".center(65))
+    print("\n\n")
+
+    choice = input(">>  ")
+
+    if choice == '1':
         print("\nLoading Gold & Glory: Treasurer's Dilemma...\n")
         input("Press Any Key to Continue...")
-    elif choice == "2":
+        level_chemistry()
+    elif choice == '2':
         print("\nLoading Elixers & Enchantments: The Witch's Apprentice...\n")
         input("Press Any Key to Continue...")
-    elif choice == "3":
+        level_statistics()
+    elif choice == '3':
         print("\nLoading Brick by Brick: Mason's Quest...\n")
         input("Press Any Key to Continue...")
-    elif choice == "4":
-        print("\nReturning to Main Menu...\n")
+        level_mathematics()
     else:
-        print("\nInvalid choice. Please try again.")
-        input("Press Any Key to Continue...")
-        level_selector()
-    
+        return 0
+
+def level_chemistry():
+    pass
+
+def level_statistics():
+    pass
+
+def level_mathematics():
+    pass
+
+def help_section():
+    art()
+    print("\n\n", "Help Section".center(65))
+    input("Press Any Key To Exit...")
 
 # Main Function
 def main():
