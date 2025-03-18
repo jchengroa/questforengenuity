@@ -11,12 +11,18 @@ Version: 0.1 (March 7, 2025) - Cheng Roa
 Version: 0.2 (March 11, 2025) - Chua
 > Created Main Menu
 > Added Error Handling
+> Added User Input
 
 Version: 0.3 (March 18, 2025) - Cheng Roa
 > Organized Codespace Layout (Added Main Function)
 > Added ASCII ART
 > Centered Elements and Changed Cursor
 > Added Clear Screen after updates
+
+Version: 0.3.1 (March  18, 2025) - Cheng Roa
+> Fixed Bugs
+> Reorganized Menu
+> Organized Codespace Layout
 """
 
 # Import System Files
@@ -26,52 +32,59 @@ import os
 
 # Functions
 def art():
-    print(r"    \_\          ___                  _      __                  ")
-    print(r"   (_**)        / _ \ _   _  ___  ___| |_   / _| ___  _ __       ")
-    print(r"  __) #_       | | | | | | |/ _ \/ __| __| | |_ / _ \| '__|      ")
-    print(r" ( )...()      | |_| | |_| |  __/\__ \ |_  |  _| (_) | |         ")
-    print(r" || | |I|       \__\_\\__,_|\___||___/\__| |_|  \___/|_|       _ ")
-    print(r" || | |()__/   | ____|_ __   __ _  ___ _ __  _   _(_) |_ _   _| |")
-    print(r" /\(___)       |  _| | '_ \ / _` |/ _ \ '_ \| | | | | __| | | | |")
-    print(r"_-*******-_""-_| |___| | | | (_| |  __/ | | | |_| | | |_| |_| |_|")
-    print(r"-,,,,,,,,- ,,- |_____|_| |_|\__, |\___|_| |_|\__,_|_|\__|\__, (_)")
-    print(r"                            |___/                        |___/   ")
+    print("")
+    print(r"     \_\          ___                  _      __                  ")
+    print(r"    (_**)        / _ \ _   _  ___  ___| |_   / _| ___  _ __       ")
+    print(r"   __) #_       | | | | | | |/ _ \/ __| __| | |_ / _ \| '__|      ")
+    print(r"  ( )...()      | |_| | |_| |  __/\__ \ |_  |  _| (_) | |         ")
+    print(r"  || | |I|       \__\_\\__,_|\___||___/\__| |_|  \___/|_|       _ ")
+    print(r"  || | |()__/   | ____|_ __   __ _  ___ _ __  _   _(_) |_ _   _| |")
+    print(r"  /\(___)       |  _| | '_ \ / _` |/ _ \ '_ \| | | | | __| | | | |")
+    print(r" _-*******-_""-_| |___| | | | (_| |  __/ | | | |_| | | |_| |_| |_|")
+    print(r" -,,,,,,,,- ,,- |_____|_| |_|\__, |\___|_| |_|\__,_|_|\__|\__, (_)")
+    print(r"                             |___/                        |___/   ")
 
-def main_menu():
+def level_selector():
+    pass
+
+# Main Function
+def main():
+
+    invalidinput = False
+    borderdraw = "-"*18
+
     while True:
         os.system('cls')
+
         art()
-        print("\n\n=== Quest for Enginuity ===".center(65))
-        print("1)  Play Game".center(65))
-        print("2)  Select Subject".center(65))
-        print("3)  Help".center(65))
-        print("4)  Exit".center(65))
+
+        print("\n")
+        print(borderdraw.center(65))
+        print("1)  Play Game     ".center(65))
+        print("2)  Help          ".center(65))
+        print("3)  Exit          ".center(65))
+        print(borderdraw.center(65))
+
+        if invalidinput == True:
+            print("\nInvalid choice. Please try again.")
+
         choice = input(">>  ")
+
         if choice == "1":
             os.system('cls')
             print("\nStarting a new adventure...\n")
-            return 1
+            input("Press Any Key to Continue...")
+            level_selector()
         elif choice == "2":
             os.system('cls')
-            print("\nLoading saved game...\n")
+            print("\nEntering Help Menu...\n")
+            input("Press Any Key to Continue...")
         elif choice == "3":
-            os.system('cls')
-            print("\nEntering Math Challenges...\n")
-        elif choice == "4":
-            os.system('cls')
-            print("\nOpening settings...\n")
-        elif choice == "5":
             os.system('cls')
             print("\nExiting game. See you next time!\n")
             break
         else:
-            os.system('cls')
-            print("\nInvalid choice. Please try again.\n")
-
-# Main Function
-def main():
-    os.system('cls')
-    main_menu()
+            invalidinput = True
 
 if __name__ == "__main__":
     main()
