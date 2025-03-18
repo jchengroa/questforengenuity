@@ -45,14 +45,29 @@ def art():
     print(r"                             |___/                        |___/   ")
 
 def level_selector():
-   '''
    clear_screen()
     print("\n Choose Your Learning Path ") 
     print("1) Chemistry ") 
     print("2) Statistics ") 
     print("3) Mathematics ") 
     print("4) Return to Main Menu")
-    '''
+    
+    if choice == "1":
+        print("\nLoading Gold & Glory: Treasurer's Dilemma...\n")
+        input("Press Any Key to Continue...")
+    elif choice == "2":
+        print("\nLoading Elixers & Enchantments: The Witch's Apprentice...\n")
+        input("Press Any Key to Continue...")
+    elif choice == "3":
+        print("\nLoading Brick by Brick: Mason's Quest...\n")
+        input("Press Any Key to Continue...")
+    elif choice == "4":
+        print("\nReturning to Main Menu...\n")
+    else:
+        print("\nInvalid choice. Please try again.")
+        input("Press Any Key to Continue...")
+        level_selector()
+    
 
 # Main Function
 def main():
