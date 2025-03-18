@@ -111,13 +111,10 @@ def main():
 
         if choice == "1":
             os.system('cls')
-            print("\nStarting a new adventure...\n")
-            input("Press Any Key to Continue...")
             level_selector()
         elif choice == "2":
             os.system('cls')
-            print("\nEntering Help Menu...\n")
-            input("Press Any Key to Continue...")
+            help_section()
         elif choice == "3":
             os.system('cls')
             print("\nExiting game. See you next time!\n")
