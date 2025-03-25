@@ -19,7 +19,11 @@ Version: 0.3 (March 18, 2025) - Cheng Roa
 > Centered Elements and Changed Cursor
 > Added Clear Screen after updates
 
+Version: 0.4 (March 25, 2025) - Chua
+> Added Math Level
+
 """
+
 
 # Import System Files
 import os
@@ -79,7 +83,50 @@ def level_statistics():
     pass
 
 def level_mathematics():
-    pass
+    print("\n🏰 **Brick by Brick: The Castle Mason’s Quest** 🏰")
+    print("\nThe King has ordered a grand tower to be built, and as the royal mason, you must ensure its strength and stability!")
+    print("You will need to solve mathematical challenges to proceed.\n")
+
+    # Challenge 1: Algebra - Calculating the height of the tower
+    print("\n🧱 **Challenge 1: Algebra - Tower Height Calculation** 🧱")
+    print("The King wants the tower to be 5 times as tall as the castle gate (which is 12 meters).")
+    
+    while True:
+        answer = input("How tall should the tower be? (in meters): ")
+        if answer.strip() == "60":
+            print("✅ Correct! The tower will stand at 60 meters tall.")
+            break
+        else:
+            print("❌ Incorrect! Try again.")
+
+    # Challenge 2: Differentiation - Rate of brick stacking
+    print("\n📐 **Challenge 2: Differentiation - Speed of Construction** 📐")
+    print("The workers stack bricks at a rate of f(x) = 3x^2 + 2x - 5 bricks per hour.")
+    print("Find the rate of stacking at x = 4 hours.")
+
+    while True:
+        answer = input("Enter the derivative evaluated at x = 4: ")
+        if answer.strip() == "29":
+            print("✅ Correct! The workers are stacking bricks at 29 bricks per hour at that moment.")
+            break
+        else:
+            print("❌ Incorrect! Try again.")
+
+    # Challenge 3: Matrices - Structural Integrity Check
+    print("\n🏗 **Challenge 3: Matrices - Load Distribution** 🏗")
+    print("The weight distribution of the tower is represented by matrix A:")
+    print("\nA = [ 2  4 ]\n    [ 1  3 ]")
+    print("\nFind the determinant of matrix A.")
+
+    while True:
+        answer = input("Enter the determinant: ")
+        if answer.strip() == "2":
+            print("✅ Correct! The determinant is 2, meaning the structure is stable.")
+            break
+        else:
+            print("❌ Incorrect! Try again.")
+
+    print("\n🎉 Congratulations, Mason! You have successfully built the tower! 🏰")
 
 def help_section():
     art()
