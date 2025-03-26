@@ -172,7 +172,7 @@ def mode(numbers):
     except statistics.StatisticsError:
         return "N/A"
 
-def stats_level():
+def level_statistics():
     print("Welcome to the GOLD MINE the King wants you to compute the mean, median, and mode of a list of all the gold in the kingdom")
     time.sleep(2)
     print(f"Find the Mean, Median, and Mode of the following list of numbers to prove your worth to the king, If there is no mode input \"N/A\" ")
