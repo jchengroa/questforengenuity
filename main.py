@@ -22,15 +22,21 @@ Version: 0.3 (March 18, 2025) - Cheng Roa
 Version: 0.4 (March 25, 2025) - Chua
 > Added Math Level
 
-"""
+Version: 0.5 (March 27, 2025) - Lumilan
+> Added Stats Level
 
+Version: 0.5.1 (March 27, 2025) - Cheng Roa
+> Updated ASCII Art
+> Organized Codespace
+
+"""
 
 # Import System Files
 import os
 
 # Global Variables
 
-# Functions
+# General Functions
 def art():
     print("")
     print(r"     \_\          ___                  _      __                  ")
@@ -44,44 +50,65 @@ def art():
     print(r" -,,,,,,,,- ,,- |_____|_| |_|\__, |\___|_| |_|\__,_|_|\__|\__, (_)")
     print(r"                             |___/                        |___/   ")
 
-def level_selector():
+def menubox(selector):
+    if selector == 1:
+        print(r"+----------------------+".center(65))
+        print(r"|    (1)  Play Game    |".center(65))
+        print(r"|    (2)  Help         |".center(65))
+        print(r"|    (3)  Exit         |".center(65))
+        print(r"+----------------------+".center(65))
+    elif selector == 2:
+        print(r"Choose Your Learning Path:".center(65))
+        print(r"+--------------------------------------+".center(65))
+        print(r"|           (1)  Chemistry             |".center(65))
+        print(r"|           (2)  Statistics            |".center(65))
+        print(r"|           (3)  Mathematics           |".center(65))
+        print(r"|    Press Any Other Key To Go Back    |".center(65))
+        print(r"+--------------------------------------+".center(65))
 
+def level_selector():
     os.system('cls')
     
     art()
-    
     print("\n")
-    print("Choose Your Learning Path:".center(65)) 
-    print("\n")
-    print("1) Chemistry  ".center(65)) 
-    print("2) Statistics ".center(65)) 
-    print("3) Mathematics".center(65)) 
-    print("(Press Any Other Key to go back)".center(65))
-    print("\n\n")
+    menubox(2)
 
     choice = input(">>  ")
 
     if choice == '1':
-        print("\nLoading Gold & Glory: Treasurer's Dilemma...\n")
-        input("Press Any Key to Continue...")
+        os.system('cls')
         level_chemistry()
     elif choice == '2':
-        print("\nLoading Elixers & Enchantments: The Witch's Apprentice...\n")
-        input("Press Any Key to Continue...")
+        os.system('cls')
         level_statistics()
     elif choice == '3':
-        print("\nLoading Brick by Brick: Mason's Quest...\n")
-        input("Press Any Key to Continue...")
+        os.system('cls')
         level_mathematics()
     else:
         return 0
 
+def help_section():
+    art()
+    print("\n\n", "Help Section".center(65))
+    print(
+    """
+    Gold & Glory: Treasurer's Dilemma
+    > 1) Chemistry Level
+
+    Elixers & Enchantments: The Witch's Apprentice
+    > 2) Statistics Level
+
+    Brick by Brick: Mason's Quest
+    > 3) Mathematics Level
+    
+    """)
+    input("Press Any Key To Exit...")
+
+# Chemistry Level Function - JOHN CARLO
 def level_chemistry():
     pass
 
-def level_statistics():
-    pass
-
+# Mathematics Level Function - YVAN
 def level_mathematics():
     print("\n🏰 **Brick by Brick: The Castle Mason’s Quest** 🏰")
     print("\nThe King has ordered a grand tower to be built, and as the royal mason, you must ensure its strength and stability!")
@@ -128,23 +155,7 @@ def level_mathematics():
 
     print("\n🎉 Congratulations, Mason! You have successfully built the tower! 🏰")
 
-def help_section():
-    art()
-    print("\n\n", "Help Section".center(65))
-    print(
-    """
-    Gold & Glory: Treasurer's Dilemma
-    > 1) Chemistry Level
-
-    Elixers & Enchantments: The Witch's Apprentice
-    > 2) Statistics Level
-
-    Brick by Brick: Mason's Quest
-    > 3) Mathematics Level
-    
-    """)
-    input("Press Any Key To Exit...")
-# STATISTICS LEVEL - JUSTINE 
+# Statistics Level Function - JUSTINE 
 import statistics
 import time
 import random
@@ -188,7 +199,6 @@ def stats_level():
     else:
         print("Your answers are incorrect. The king has no use for you.")
 
-
 # Main Function
 def main():
 
@@ -199,13 +209,8 @@ def main():
         os.system('cls')
 
         art()
-
         print("\n")
-        print(borderdraw.center(65))
-        print("1)  Play Game     ".center(65))
-        print("2)  Help          ".center(65))
-        print("3)  Exit          ".center(65))
-        print(borderdraw.center(65))
+        menubox(1)
 
         if invalidinput == True:
             print("\nInvalid choice. Please try again.")
