@@ -144,6 +144,50 @@ def help_section():
     
     """)
     input("Press Any Key To Exit...")
+# STATISTICS LEVEL - JUSTINE 
+import statistics
+import time
+import random
+
+def mean(numbers):
+    return sum(numbers) / len(numbers)
+
+def median(numbers):
+    return statistics.median(numbers)
+
+def mode(numbers):
+    try:
+        return statistics.mode(numbers)
+    except statistics.StatisticsError:
+        return "N/A"
+
+def stats_level():
+    print("Welcome to the GOLD MINE the King wants you to compute the mean, median, and mode of a list of all the gold in the kingdom")
+    time.sleep(2)
+    print(f"Find the Mean, Median, and Mode of the following list of numbers to prove your worth to the king, If there is no mode input \"N/A\" ")
+    time.sleep(2)   
+    
+    numbers = [random.randint(1, 10) for _ in range(10)]
+    print(f"\nNumbers: {numbers}")
+    
+    user_mean = float(input("Enter the mean: "))
+    user_median = float(input("Enter the median: "))
+    user_mode = float(input("Enter the mode: "))
+    
+    correct_mean = mean(numbers)
+    correct_median = median(numbers)
+    correct_mode = mode(numbers)
+    
+    print("\nResults:")
+    print(f"Your mean: {user_mean} (Correct: {correct_mean})")
+    print(f"Your median: {user_median} (Correct: {correct_median})")
+    print(f"Your mode: {user_mode} (Correct: {correct_mode})")
+    
+    if user_mean == correct_mean and user_median == correct_median and user_mode == correct_mode:
+        print("Congratulations your computations are correct and the king has found you useful. Your life is spared!")
+    else:
+        print("Your answers are incorrect. The king has no use for you.")
+
 
 # Main Function
 def main():
