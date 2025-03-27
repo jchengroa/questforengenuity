@@ -29,42 +29,56 @@ Version: 0.5.1 (March 27, 2025) - Cheng Roa
 > Updated ASCII Art
 > Organized Codespace
 
+Version: 0.6 (March 28, 2025) - Cheng Roa
+> Added Chem Level
+> Added confirmation before exit
+> Completed help menu
+> Aligned menu based on terminal size instead of static
+> Optimization: Removed unnecessary variables and conditions
+
 """
 
 # Import System Files
 import os
+import statistics
+import time
+import random
 
 # Global Variables
+term_width = os.get_terminal_size().columns
 
 # General Functions
 def art():
+    term_width = os.get_terminal_size().columns
     print("")
-    print(r"     \_\          ___                  _      __                  ")
-    print(r"    (_**)        / _ \ _   _  ___  ___| |_   / _| ___  _ __       ")
-    print(r"   __) #_       | | | | | | |/ _ \/ __| __| | |_ / _ \| '__|      ")
-    print(r"  ( )...()      | |_| | |_| |  __/\__ \ |_  |  _| (_) | |         ")
-    print(r"  || | |I|       \__\_\\__,_|\___||___/\__| |_|  \___/|_|       _ ")
-    print(r"  || | |()__/   | ____|_ __   __ _  ___ _ __  _   _(_) |_ _   _| |")
-    print(r"  /\(___)       |  _| | '_ \ / _` |/ _ \ '_ \| | | | | __| | | | |")
-    print(r" _-*******-_""-_| |___| | | | (_| |  __/ | | | |_| | | |_| |_| |_|")
-    print(r" -,,,,,,,,- ,,- |_____|_| |_|\__, |\___|_| |_|\__,_|_|\__|\__, (_)")
-    print(r"                             |___/                        |___/   ")
+    print(r"     \_\          ___                  _      __                  ".center(term_width))
+    print(r"    (_**)        / _ \ _   _  ___  ___| |_   / _| ___  _ __       ".center(term_width))
+    print(r"   __) #_       | | | | | | |/ _ \/ __| __| | |_ / _ \| '__|      ".center(term_width))
+    print(r"  ( )...()      | |_| | |_| |  __/\__ \ |_  |  _| (_) | |         ".center(term_width))
+    print(r"  || | |I|       \__\_\\__,_|\___||___/\__| |_|  \___/|_|       _ ".center(term_width))
+    print(r"  || | |()__/   | ____|_ __   __ _  ___ _ __  _   _(_) |_ _   _| |".center(term_width))
+    print(r"  /\(___)       |  _| | '_ \ / _` |/ _ \ '_ \| | | | | __| | | | |".center(term_width))
+    print(r" _-*******-_""-_| |___| | | | (_| |  __/ | | | |_| | | |_| |_| |_|".center(term_width))
+    print(r" -,,,,,,,,- ,,- |_____|_| |_|\__, |\___|_| |_|\__,_|_|\__|\__, (_)".center(term_width))
+    print(r"                             |___/                        |___/   ".center(term_width))
 
 def menubox(selector):
     if selector == 1:
-        print(r"+----------------------+".center(65))
-        print(r"|    (1)  Play Game    |".center(65))
-        print(r"|    (2)  Help         |".center(65))
-        print(r"|    (3)  Exit         |".center(65))
-        print(r"+----------------------+".center(65))
+        term_width = os.get_terminal_size().columns
+        print(r"+----------------------+".center(term_width))
+        print(r"|    (1)  Play Game    |".center(term_width))
+        print(r"|    (2)  Help         |".center(term_width))
+        print(r"|    (3)  Exit         |".center(term_width))
+        print(r"+----------------------+".center(term_width))
     elif selector == 2:
-        print(r"Choose Your Learning Path:".center(65))
-        print(r"+--------------------------------------+".center(65))
-        print(r"|           (1)  Chemistry             |".center(65))
-        print(r"|           (2)  Statistics            |".center(65))
-        print(r"|           (3)  Mathematics           |".center(65))
-        print(r"|    Press Any Other Key To Go Back    |".center(65))
-        print(r"+--------------------------------------+".center(65))
+        term_width = os.get_terminal_size().columns
+        print(r"Choose Your Learning Path:".center(term_width))
+        print(r"+--------------------------------------+".center(term_width))
+        print(r"|           (1)  Mathematics           |".center(term_width))
+        print(r"|           (2)  Chemistry             |".center(term_width))
+        print(r"|           (3)  Statistics            |".center(term_width))
+        print(r"|    Press Any Other Key To Go Back    |".center(term_width))
+        print(r"+--------------------------------------+".center(term_width))
 
 def level_selector():
     os.system('cls')
@@ -77,36 +91,275 @@ def level_selector():
 
     if choice == '1':
         os.system('cls')
-        level_chemistry()
+        level_mathematics()
     elif choice == '2':
         os.system('cls')
-        level_statistics()
+        level_chemistry()
     elif choice == '3':
         os.system('cls')
-        level_mathematics()
+        level_statistics()
     else:
         return 0
 
 def help_section():
     art()
-    print("\n\n", "Help Section".center(65))
+    term_width = os.get_terminal_size().columns
+    print("\n\n", "Help Section".center(term_width))
     print(
     """
+    Brick by Brick: Mason's Quest
+    > 1) Mathematics Level
+         Objective: Solve mathematical challenges
+         Topics Involved: Algebra, Differentiation (Rates of Change), Matrices
+        
+         In the challenges, your answer must strictly be an integer. e.g. 24
+         (Decimals are not allowed in this level)
+         
+         Do not input units.
+
     Gold & Glory: Treasurer's Dilemma
-    > 1) Chemistry Level
+    > 2) Chemistry Level
+         Objective: Identify amount of atoms and find the balanced equation
+         Topics Involved: Balancing Chemical Equation
+
+         In identifying amount of atoms and balancing, your answer must strictly be an integer. e.g. 3
+         (Decimals are not allowed in this level)
+         The maximum answer in this level is only up to 3.
+
+         In balancing, if the compounds don't need to changed, input the integer 1
+         (Decimals are not allowed in this level)
+
+         Do not input anything else
 
     Elixers & Enchantments: The Witch's Apprentice
-    > 2) Statistics Level
+    > 3) Statistics Level
+         Objective: Find the Mean, Median, and Mode of the following list of numbers
+         Topics Involved: Measures of Central Tendency
 
-    Brick by Brick: Mason's Quest
-    > 3) Mathematics Level
-    
+         If there is no mode input \"N/A\"
+         
+         Decimals are allowed in this level, but only input numerical numbers
+         Enter the precise answer in each measures, calculator level of accuracy.
+
+         Do not input anything else
     """)
-    input("Press Any Key To Exit...")
+    input("Press Enter to Go Back...")
 
 # Chemistry Level Function - JOHN CARLO
+def question_atoms(element, ans, side="reactant"):
+    os.system('cls')
+    print("\n🧉 **Gold & Glory: The Treasurer's Ultimate Dilemma** 🧈")
+    print("\nYour task is to balance these chemicals perfectly to ensure the potion succeeds.\n\n\n") 
+    term_width = os.get_terminal_size().columns
+    print(r"+-------------------------------------------------------------------------------------------+".center(term_width))
+    print(r"| The witch puts in Sodium Carbonate (Na2CO3) and Hydrochloric Acid (HCl) into the cauldron |".center(term_width))
+    print(r"+-------------------------------------------------------------------------------------------+".center(term_width))
+    print(r"| It resulted in Sodium Chloride (NaCl), Water (H2O), and Carbon Dioxide Gas (CO2)          |".center(term_width))
+    print(r"+-------------------------------------------------------------------------------------------+".center(term_width)+"\n\n")
+    answer = input(f"Identify the number of atoms of {element} from the {side} side:\n>> ")
+    if answer == ans:
+        print("\n✅ Correct!")
+        time.sleep(1)
+        return 1
+    else:
+        print("\n❌ Incorrect! Try again.")
+        time.sleep(1)
+        return 0
+
+def balancing_table():
+    os.system('cls')
+    print("\n🧉 **Gold & Glory: The Treasurer's Ultimate Dilemma** 🧈")
+    print("\nYour task is to balance these chemicals perfectly to ensure the potion succeeds.\n\n\n")
+    
+    term_width = os.get_terminal_size().columns
+    print(r"+------------------------------------------------------+".center(term_width))
+    print(r"| Unbalanced Equation: Na2Co3 + HCl → NaCl + H2O + CO2 |".center(term_width))
+    print(r"+------------------------------------------------------+".center(term_width))
+
+    print(r"+---------------+-----------+----------+".center(term_width))
+    print(r"|    Element    | Reactants | Products |".center(term_width))
+    print(r"+---------------+-----------+----------+".center(term_width))
+    print(r"| Na (Sodium)   |         2 |        1 |".center(term_width))
+    print(r"| C (Carbon)    |         1 |        1 |".center(term_width))
+    print(r"| O (Oxygen)    |         3 |        3 |".center(term_width))
+    print(r"| H (Hydrogen)  |         1 |        2 |".center(term_width))
+    print(r"| Cl (Chlorine) |         1 |        1 |".center(term_width))
+    print(r"+---------------+-----------+----------+".center(term_width))
+
 def level_chemistry():
-    pass
+    # Back Story
+    print("As you enter the Witch’s lair, the air smelt of the scent of herbs…\n")
+    time.sleep(1)
+    print("You see a cauldron bubbling…\n")
+    time.sleep(1)
+    print("You hear a faint crackling sound of whooshes and sparkles.\n\n\n")
+    time.sleep(2)
+    print("Through the dark, eerie night, you see shelves lined with vials…\n")
+    time.sleep(1)
+    print("At last! You saw the kingdom’s top witch…\n\n\n")
+    time.sleep(2)
+    print("She turns to you, eyes gleaming with curiosity…\n")
+    time.sleep(1)
+    print("“Ah, just in time!” – The witch said…\n")
+    time.sleep(1)
+    print("\"I require assistance to perfect my latest creation\"" + "\n")
+    time.sleep(1)
+    print("\"I need your brain power to help me balance the chemicals I’m gonna use.\""+"\n\n\n")
+    time.sleep(2)
+    print("You have no choice but to comply, as she said she would turn you into a spoon if you don’t comply…\n")
+    time.sleep(1)
+    print("The King had told you, before you left, to comply to the witch when you are being threathened…")
+    input("\n\nPress Enter to Continue")
+    
+    # Identify Number of Atoms - Challenge 1
+    while True:
+        question_1 = question_atoms("Sodium (Na)", "2")
+        if question_1 == 1:
+            break
+        else: 
+            continue
+    while True:
+        question_2 = question_atoms("Carbon (C)", "1")
+        if question_2 == 1:
+            break
+        else: 
+            continue
+    while True:
+        question_3 = question_atoms("Oxygen (O)", "3")
+        if question_3 == 1:
+            break
+        else: 
+            continue
+    while True:
+        question_4 = question_atoms("Hydrogen (H)", "1")
+        if question_4 == 1:
+            break
+        else: 
+            continue
+    while True:
+        question_5 = question_atoms("Chlorine (Cl)", "1")
+        if question_5 == 1:
+            break
+        else: 
+            continue
+    while True:
+        question_6 = question_atoms("Sodium (Na)", "1", side="product")
+        if question_6 == 1:
+            break
+        else: 
+            continue
+    while True:
+        question_7 = question_atoms("Carbon (C)", "1", side="product")
+        if question_7 == 1:
+            break
+        else: 
+            continue
+    while True:
+        question_8 = question_atoms("Oxygen (O)", "3", side="product")
+        if question_8 == 1:
+            break
+        else: 
+            continue
+    while True:
+        question_9 = question_atoms("Hydrogen (H)", "2", side="product")
+        if question_9 == 1:
+            break
+        else: 
+            continue
+    while True:
+        question_10 = question_atoms("Chlorine (Cl)", "1", side="product")
+        if question_10 == 1:
+            break
+        else: 
+            continue
+
+    # Balance Equation - Final Challenge
+    while True:
+        r1 = 0
+        r2 = 0
+        p1 = 0
+        p2 = 0
+        p3 = 0
+        while True:
+            if r1 == 0:
+                balancing_table()
+                answer_r1 = "\n\nFill the Blanks:\n__ Na2CO3 + HCl → NaCl + H2O + CO2\n>> "
+                answer = input(answer_r1)
+                try:
+                    r1 += int(answer)
+                except Exception:
+                    print("\nERROR: Please enter an integer!")
+                    time.sleep(2)
+                    continue
+                 
+                time.sleep(2)
+
+            if r2 == 0:
+                balancing_table()
+                answer_r2 = f"\n\nFill the Blanks:\n{r1} Na2CO3 + __ HCl → NaCl + H2O + CO2\n>> "
+                answer = input(answer_r2)
+                try:
+                    r2 += int(answer)
+                except Exception:
+                    print("\nERROR: Please enter an integer!")
+                    time.sleep(2)
+                    continue
+                time.sleep(2)
+
+            if p1 == 0:
+                balancing_table()
+                answer_p1 = f"\n\nFill the Blanks:\n{r1} Na2CO3 + {r2} HCl → __ NaCl + H2O + CO2\n>> "
+                answer = input(answer_p1)
+                try:
+                    p1 += int(answer)
+                except Exception:
+                    print("\nERROR: Please enter an integer!")
+                    time.sleep(2)
+                    continue
+                time.sleep(2)
+
+            if p2 == 0:
+                balancing_table()
+                answer_p2 = f"\n\nFill the Blanks:\n{r1} Na2CO3 + {r2}HCl → {p1} NaCl + __ H2O + CO2\n>> "
+                answer = input(answer_p2)
+                try:
+                    p2 += int(answer)
+                except Exception:
+                    print("\nERROR: Please enter an integer!")
+                    time.sleep(2)
+                    continue
+                time.sleep(2)
+
+            if p3 == 0:
+                balancing_table()
+                answer_p3 = f"\n\nFill the Blanks:\n{r1} Na2CO3 + {r2} HCl → {p1} NaCl + {p2} H2O + __ CO2\n>> "
+                answer = input(answer_p3)
+                try:
+                    p3 += int(answer)
+                except Exception:
+                    print("\nERROR: Please enter an integer!")
+                    time.sleep(2)
+                    continue
+                time.sleep(2)
+
+            if r1 > 0 and r2 > 0 and p1 > 0 and p2 > 0 and p3 > 0:
+                result = f"{r1} Na2CO3 + {r2} HCl → {p1} NaCl + {p2} H2O + {p3} CO2"
+                break
+    
+        if result == "1 Na2CO3 + 2 HCl → 2 NaCl + 1 H2O + 1 CO2":
+            print("\n✅ Correct!")
+            time.sleep(2)
+            break
+        else:
+            print("\n❌ Incorrect! Try again.")
+            time.sleep(2)
+            continue
+
+    # Result
+    os.system('cls')
+    print("Your Answer was: " + result + "\n\n")
+    print("\n🎉 Congratulations, Mason! You have successfully balanced her potion! 🧪\n")
+    input("Press Enter to go back to the main menu")
 
 # Mathematics Level Function - YVAN
 def level_mathematics():
@@ -115,16 +368,20 @@ def level_mathematics():
     print("You will need to solve mathematical challenges to proceed.\n")
 
     # Challenge 1: Algebra - Calculating the height of the tower
+    time.sleep(1)
     print("\n🧱 **Challenge 1: Algebra - Tower Height Calculation** 🧱")
     print("The King wants the tower to be 5 times as tall as the castle gate (which is 12 meters).")
     
+    time.sleep(1)
     while True:
         answer = input("How tall should the tower be? (in meters): ")
         if answer.strip() == "60":
             print("✅ Correct! The tower will stand at 60 meters tall.")
+            time.sleep(1)
             break
         else:
             print("❌ Incorrect! Try again.")
+            time.sleep(1)
 
     # Challenge 2: Differentiation - Rate of brick stacking
     print("\n📐 **Challenge 2: Differentiation - Speed of Construction** 📐")
@@ -135,9 +392,11 @@ def level_mathematics():
         answer = input("Enter the derivative evaluated at x = 4: ")
         if answer.strip() == "29":
             print("✅ Correct! The workers are stacking bricks at 29 bricks per hour at that moment.")
+            time.sleep(1)
             break
         else:
             print("❌ Incorrect! Try again.")
+            time.sleep(1)
 
     # Challenge 3: Matrices - Structural Integrity Check
     print("\n🏗 **Challenge 3: Matrices - Load Distribution** 🏗")
@@ -149,17 +408,16 @@ def level_mathematics():
         answer = input("Enter the determinant: ")
         if answer.strip() == "2":
             print("✅ Correct! The determinant is 2, meaning the structure is stable.")
+            time.sleep(1)
             break
         else:
             print("❌ Incorrect! Try again.")
+            time.sleep(1)
 
-    print("\n🎉 Congratulations, Mason! You have successfully built the tower! 🏰")
+    print("\n🎉 Congratulations, Mason! You have successfully built the tower! 🏰\n")
+    input("Press Enter to go back to the main menu")
 
 # Statistics Level Function - JUSTINE 
-import statistics
-import time
-import random
-
 def mean(numbers):
     return sum(numbers) / len(numbers)
 
@@ -173,9 +431,10 @@ def mode(numbers):
         return "N/A"
 
 def level_statistics():
-    print("Welcome to the GOLD MINE the King wants you to compute the mean, median, and mode of a list of all the gold in the kingdom")
+    print("\n🪄 **Elixers & Enchantments: The Witch's Apprentice** ✨")
+    print("Welcome to the GOLD MINE! The King wants you to compute the mean, median, and mode of a list of all the gold in the kingdom.")
     time.sleep(2)
-    print(f"Find the Mean, Median, and Mode of the following list of numbers to prove your worth to the king, If there is no mode input \"N/A\" ")
+    print(f"Find the Mean, Median, and Mode of the following list of numbers to prove your worth to the king, If there is no mode input \"N/A\".")
     time.sleep(2)   
     
     numbers = [random.randint(1, 10) for _ in range(10)]
@@ -195,15 +454,16 @@ def level_statistics():
     print(f"Your mode: {user_mode} (Correct: {correct_mode})")
     
     if user_mean == correct_mean and user_median == correct_median and user_mode == correct_mode:
-        print("Congratulations your computations are correct and the king has found you useful. Your life is spared!")
+        print("\n🎉 Congratulations, Mason! your computations are correct and the king has found you useful. Your life is spared! 🏰\n")
+        input("Press Enter to go back to the main menu")
     else:
         print("Your answers are incorrect. The king has no use for you.")
+        input("Press Enter to go back to the main menu")
 
 # Main Function
 def main():
 
     invalidinput = False
-    borderdraw = "-"*18
 
     while True:
         os.system('cls')
@@ -218,15 +478,25 @@ def main():
         choice = input(">>  ")
 
         if choice == "1":
+            invalidinput = False
             os.system('cls')
             level_selector()
         elif choice == "2":
+            invalidinput = False
             os.system('cls')
             help_section()
         elif choice == "3":
+            invalidinput = False
             os.system('cls')
-            print("\nExiting game. See you next time!\n")
-            break
+            confirmation = input("\nAre you sure?\nType 'Yes' to exit\n\n>> ")
+            if confirmation == "Yes":
+                os.system('cls')
+                time.sleep(1)
+                print("\nExiting game. See you next time!\n")
+                time.sleep(1)
+                break
+            else:
+                continue
         else:
             invalidinput = True
 
