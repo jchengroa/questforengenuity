@@ -38,6 +38,8 @@ Version: 0.6 (March 28, 2025) - Cheng Roa
 
 Version: 0.6.1 (March 28, 2025) - Hotfix
 > Fixed bug that causes term_width to crash the program
+> Fixed inconsistent texts
+> Added Story Mode Option for Later
 
 """
 
@@ -60,15 +62,15 @@ def art():
     except Exception:
         term_width = 65
     print("")
-    print(r"     \_\          ___                  _      __                  ".center(term_width))
-    print(r"    (_**)        / _ \ _   _  ___  ___| |_   / _| ___  _ __       ".center(term_width))
-    print(r"   __) #_       | | | | | | |/ _ \/ __| __| | |_ / _ \| '__|      ".center(term_width))
-    print(r"  ( )...()      | |_| | |_| |  __/\__ \ |_  |  _| (_) | |         ".center(term_width))
-    print(r"  || | |I|       \__\_\\__,_|\___||___/\__| |_|  \___/|_|       _ ".center(term_width))
-    print(r"  || | |()__/   | ____|_ __   __ _  ___ _ __  _   _(_) |_ _   _| |".center(term_width))
-    print(r"  /\(___)       |  _| | '_ \ / _` |/ _ \ '_ \| | | | | __| | | | |".center(term_width))
-    print(r" _-*******-_""-_| |___| | | | (_| |  __/ | | | |_| | | |_| |_| |_|".center(term_width))
-    print(r" -,,,,,,,,- ,,- |_____|_| |_|\__, |\___|_| |_|\__,_|_|\__|\__, (_)".center(term_width))
+    print(r"     \_\           ___                  _      __                  ".center(term_width))
+    print(r"    (_**)         / _ \ _   _  ___  ___| |_   / _| ___  _ __       ".center(term_width))
+    print(r"   __) #_        | | | | | | |/ _ \/ __| __| | |_ / _ \| '__|      ".center(term_width))
+    print(r"  ( )...()       | |_| | |_| |  __/\__ \ |_  |  _| (_) | |         ".center(term_width))
+    print(r"  || | |I|        \__\_\\__,_|\___||___/\__| |_|  \___/|_|       _ ".center(term_width))
+    print(r"  || | |()__/    | ____|_ __   __ _  ___ _ __  _   _(_) |_ _   _| |".center(term_width))
+    print(r"  /\(___)        |  _| | '_ \ / _` |/ _ \ '_ \| | | | | __| | | | |".center(term_width))
+    print(r" _-*******-_""-_ | |___| | | | (_| |  __/ | | | |_| | | |_| |_| |_|".center(term_width))
+    print(r" -,,,,,,,,- ,,-  |_____|_| |_|\__, |\___|_| |_|\__,_|_|\__|\__, (_)".center(term_width))
     print(r"                             |___/                        |___/   ".center(term_width))
 
 def menubox(selector):
@@ -78,19 +80,23 @@ def menubox(selector):
         term_width = 65
         
     if selector == 1:
-        print(r"+----------------------+".center(term_width))
-        print(r"|    (1)  Play Game    |".center(term_width))
-        print(r"|    (2)  Help         |".center(term_width))
-        print(r"|    (3)  Exit         |".center(term_width))
-        print(r"+----------------------+".center(term_width))
+        print(r"+-------------------------+".center(term_width))
+        print(r"|   (1)  Play Game        |".center(term_width))
+        print(r"|   (2)  Level Selector   |".center(term_width))
+        print(r"|   (3)  Help             |".center(term_width))
+        print(r"|   (4)  Exit             |".center(term_width))
+        print(r"+-------------------------+".center(term_width))
     elif selector == 2:
         print(r"Choose Your Learning Path:".center(term_width))
         print(r"+--------------------------------------+".center(term_width))
         print(r"|           (1)  Mathematics           |".center(term_width))
         print(r"|           (2)  Chemistry             |".center(term_width))
         print(r"|           (3)  Statistics            |".center(term_width))
-        print(r"|    Press Any Other Key To Go Back    |".center(term_width))
+        print(r"|        Press Enter To Go Back        |".center(term_width))
         print(r"+--------------------------------------+".center(term_width))
+
+def story_mode():
+    pass
 
 def level_selector():
     os.system('cls')
@@ -504,14 +510,17 @@ def main():
         choice = input(">>  ")
 
         if choice == "1":
+            invalidinput = True
+            story_mode()
+        if choice == "2":
             invalidinput = False
             os.system('cls')
             level_selector()
-        elif choice == "2":
+        elif choice == "3":
             invalidinput = False
             os.system('cls')
             help_section()
-        elif choice == "3":
+        elif choice == "4":
             invalidinput = False
             os.system('cls')
             confirmation = input("\nAre you sure?\nType 'Yes' to exit\n\n>> ")
