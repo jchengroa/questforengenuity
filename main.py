@@ -36,6 +36,9 @@ Version: 0.6 (March 28, 2025) - Cheng Roa
 > Aligned menu based on terminal size instead of static
 > Optimization: Removed unnecessary variables and conditions
 
+Version: 0.6.1 (March 28, 2025) - Hotfix
+> Fixed bug that causes term_width to crash the program
+
 """
 
 # Import System Files
@@ -45,11 +48,17 @@ import time
 import random
 
 # Global Variables
-term_width = os.get_terminal_size().columns
+try:
+    term_width = os.get_terminal_size().columns
+except Exception:
+    term_width = 65
 
 # General Functions
 def art():
-    term_width = os.get_terminal_size().columns
+    try:
+        term_width = os.get_terminal_size().columns
+    except Exception:
+        term_width = 65
     print("")
     print(r"     \_\          ___                  _      __                  ".center(term_width))
     print(r"    (_**)        / _ \ _   _  ___  ___| |_   / _| ___  _ __       ".center(term_width))
@@ -63,15 +72,18 @@ def art():
     print(r"                             |___/                        |___/   ".center(term_width))
 
 def menubox(selector):
-    if selector == 1:
+    try:
         term_width = os.get_terminal_size().columns
+    except Exception:
+        term_width = 65
+        
+    if selector == 1:
         print(r"+----------------------+".center(term_width))
         print(r"|    (1)  Play Game    |".center(term_width))
         print(r"|    (2)  Help         |".center(term_width))
         print(r"|    (3)  Exit         |".center(term_width))
         print(r"+----------------------+".center(term_width))
     elif selector == 2:
-        term_width = os.get_terminal_size().columns
         print(r"Choose Your Learning Path:".center(term_width))
         print(r"+--------------------------------------+".center(term_width))
         print(r"|           (1)  Mathematics           |".center(term_width))
@@ -102,8 +114,13 @@ def level_selector():
         return 0
 
 def help_section():
+    
+    try:
+        term_width = os.get_terminal_size().columns
+    except Exception:
+        term_width = 65
+
     art()
-    term_width = os.get_terminal_size().columns
     print("\n\n", "Help Section".center(term_width))
     print(
     """
@@ -149,8 +166,13 @@ def help_section():
 def question_atoms(element, ans, side="reactant"):
     os.system('cls')
     print("\n🧉 **Gold & Glory: The Treasurer's Ultimate Dilemma** 🧈")
-    print("\nYour task is to balance these chemicals perfectly to ensure the potion succeeds.\n\n\n") 
-    term_width = os.get_terminal_size().columns
+    print("\nYour task is to balance these chemicals perfectly to ensure the potion succeeds.\n\n\n")
+    
+    try:
+        term_width = os.get_terminal_size().columns
+    except Exception:
+        term_width = 65
+    
     print(r"+-------------------------------------------------------------------------------------------+".center(term_width))
     print(r"| The witch puts in Sodium Carbonate (Na2CO3) and Hydrochloric Acid (HCl) into the cauldron |".center(term_width))
     print(r"+-------------------------------------------------------------------------------------------+".center(term_width))
@@ -171,7 +193,11 @@ def balancing_table():
     print("\n🧉 **Gold & Glory: The Treasurer's Ultimate Dilemma** 🧈")
     print("\nYour task is to balance these chemicals perfectly to ensure the potion succeeds.\n\n\n")
     
-    term_width = os.get_terminal_size().columns
+    try:
+        term_width = os.get_terminal_size().columns
+    except Exception:
+        term_width = 65
+        
     print(r"+------------------------------------------------------+".center(term_width))
     print(r"| Unbalanced Equation: Na2Co3 + HCl → NaCl + H2O + CO2 |".center(term_width))
     print(r"+------------------------------------------------------+".center(term_width))
