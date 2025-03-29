@@ -41,6 +41,11 @@ Version: 0.6.1 (March 28, 2025) - Hotfix
 > Fixed inconsistent texts
 > Added Story Mode Option for Later
 
+Version: 0.6.2 (March 29, 2025) - Small Update
+> Added Parts of Storymode
+> Fixed functions to work with storymode
+> Removed uneccessary variables and functions
+
 """
 
 # Import System Files
@@ -69,7 +74,7 @@ def art():
     print(r"  || | |I|        \__\_\\__,_|\___||___/\__| |_|  \___/|_|       _ ".center(term_width))
     print(r"  || | |()__/    | ____|_ __   __ _  ___ _ __  _   _(_) |_ _   _| |".center(term_width))
     print(r"  /\(___)        |  _| | '_ \ / _` |/ _ \ '_ \| | | | | __| | | | |".center(term_width))
-    print(r" _-*******-_""-_ | |___| | | | (_| |  __/ | | | |_| | | |_| |_| |_|".center(term_width))
+    print(r" _-*******-_---_ | |___| | | | (_| |  __/ | | | |_| | | |_| |_| |_|".center(term_width))
     print(r" -,,,,,,,,- ,,-  |_____|_| |_|\__, |\___|_| |_|\__,_|_|\__|\__, (_)".center(term_width))
     print(r"                             |___/                        |___/   ".center(term_width))
 
@@ -80,12 +85,12 @@ def menubox(selector):
         term_width = 65
         
     if selector == 1:
-        print(r"+-------------------------+".center(term_width))
-        print(r"|   (1)  Play Game        |".center(term_width))
-        print(r"|   (2)  Level Selector   |".center(term_width))
-        print(r"|   (3)  Help             |".center(term_width))
-        print(r"|   (4)  Exit             |".center(term_width))
-        print(r"+-------------------------+".center(term_width))
+        print(r"+----------------------------------------+".center(term_width))
+        print(f"|{"(1)  Play Game":^40}|".center(term_width))
+        print(f"|{"(2)  Level Selector":^40}|".center(term_width))
+        print(f"|{"(3)  Help":^40}|".center(term_width))
+        print(f"|{"(4)  Exit":^40}|".center(term_width))
+        print(r"+----------------------------------------+".center(term_width))
     elif selector == 2:
         print(r"Choose Your Learning Path:".center(term_width))
         print(r"+--------------------------------------+".center(term_width))
@@ -94,9 +99,6 @@ def menubox(selector):
         print(r"|           (3)  Statistics            |".center(term_width))
         print(r"|        Press Enter To Go Back        |".center(term_width))
         print(r"+--------------------------------------+".center(term_width))
-
-def story_mode():
-    pass
 
 def level_selector():
     os.system('cls')
@@ -168,6 +170,128 @@ def help_section():
     """)
     input("Press Enter to Go Back...")
 
+# Story Mode Function
+def story_mode():
+    try:
+        term_width = os.get_terminal_size().columns
+    except Exception:
+        term_width = 65
+    os.system('cls')
+    print("The Kingdom of Numeria is thriving, ruled by a powerful but exacting king.\n\n")
+    print(r"""
+   /\                                                        /\
+  |  |                                                      |  |
+ /----\                                                    /----\
+[______]                                                  [______]
+ |    |         _____                        _____         |    |
+ |[]  |        [     ]                      [     ]        |  []|
+ |    |       [_______][ ][ ][ ][][ ][ ][ ][_______]       |    |
+ |    [ ][ ][ ]|     |  ,----------------,  |     |[ ][ ][ ]    |
+ |             |     |/'    ____..____    '\|     |             |
+  \  []        |     |    /'    ||    '\    |     |        []  /
+   |      []   |     |   |o     ||     o|   |     |  []       |
+   |           |  _  |   |     _||_     |   |  _  |           |
+   |   []      | (_) |   |    (_||_)    |   | (_) |       []  |
+   |           |     |   |     (||)     |   |     |           |
+   |           |     |   |      ||      |   |     |           |
+ /''           |     |   |o     ||     o|   |     |           ''\
+[_____________[_______]--'------''------'--[_______]_____________]
+""".center(term_width))
+    input("Press Enter to Continue")
+    os.system('cls')
+    print("You, the Royal Mason, have long served under his command, ensuring the kingdom’s structures remain strong.\n\n")
+    print(r"""
+      __      _
+     /__\__  //
+    //_____\///
+   _| /-_-\)|/_
+  (___\ _ //___\
+  (  |\\_/// * \\
+   \_| \_((*   *))
+   ( |__|_\\  *//
+   (o/  _  \_*_/
+   //\__|__/\
+  // |  | |  |
+ //  _\ | |___)
+//  (___|
+""".center(term_width))
+    input("Press Enter to Continue")
+    os.system('cls')
+    print("The king demands that a tower of wisdom and power be built, one that will stand the test of time.")
+    print(r"""
+             _,._
+           ,'   ,`-.
+|.        /     |\  `.
+\ \      (  ,-,-` ). `-._ __
+ \ \      \|\,'     `\  /'  `\
+  \ \      ` |, ,  /  \ \     \
+   \ \         `,_/`, /\,`-.__/`.
+    \ \            | ` /    /    `-._
+     \\\           `-/'    /         `-.
+      \\`/ _______,-/_   /'             \
+     ---'`|       |`  ),' `---.  ,       |
+      \..-`--..___|_,/          /       /
+                 |    |`,-,...,/      ,'     
+                 \    | |_|   /     ,' __  r-'',
+                  |___|/  |, /  __ /-''  `'`)  |  
+               _,-'   ||__\ /,-' /     _,.--|  (
+            .-'       )   `(_   / _,.-'  ,-' _,/
+             `-------'       `--''       `'''
+""".center(term_width))
+    input("Press Enter to Continue")
+    os.system('cls')
+    print("The King orders you to ensure that the tower’s foundation is mathematically sound.")
+    print(r"""
+                                                |>>>
+                                                |
+                                            _  _|_  _
+                                           |;|_|;|_|;|
+                                           \\.    .  /
+                                            \\:  .  /
+                                             ||:   |
+                                             ||:.  |
+                                             ||:  .|
+                                             ||:   |       \,/
+                                             ||: , |            /`\
+                                             ||:   |
+                                             ||: . |
+              __                            _||_   |
+     ____--`~    '--~~__            __ ----~    ~`---,              ___
+-~--~                   ~---__ ,--~'                  ~~----_____-~'   `~----~~
+""".center(term_width))
+    os.system("cls")
+    level_mathematics(storymode = True)
+    os.system("cls")
+    level_chemistry(storymode = True)
+    os.system('cls')
+    print("The King leads you deep into the Royal Gold Vaults, where mountains of wealth are stored.")
+    print(r"""
+                    .
+                   / \
+                  _\ /_
+        .     .  (,'v`.)  .     .
+        \)   ( )  ,' `.  ( )   (/
+         \`. / `-'     `-' \ ,'/
+          : '    _______    ' :
+          |  _,-'  ,-.  `-._  |
+          |,' ( )__`-'__( ) `.|
+          (|,-,'-._   _.-`.-.|)
+          /  /<( o)> <( o)>\  \
+          :  :     | |     :  :
+          |  |     ; :     |  |
+          |  |    (.-.)    |  |
+          |  |  ,' ___ `.  |  |
+          ;  |)/ ,'---'. \(|  :
+      _,-/   |/\(       )/\|   \-._
+_..--'.-(    |   `-'''-'   |    )-.`--.._
+         `.  ;`._________,':  ,'
+        ,' `/               \'`.
+             `------.------'          
+""".center(term_width))
+    input("Press Enter to Continue")
+    os.system('cls')
+    level_statistics()
+
 # Chemistry Level Function - JOHN CARLO
 def question_atoms(element, ans, side="reactant"):
     os.system('cls')
@@ -218,30 +342,54 @@ def balancing_table():
     print(r"| Cl (Chlorine) |         1 |        1 |".center(term_width))
     print(r"+---------------+-----------+----------+".center(term_width))
 
-def level_chemistry():
+def level_chemistry(storymode = "False"):
     # Back Story
-    print("As you enter the Witch’s lair, the air smelt of the scent of herbs…\n")
-    time.sleep(1)
-    print("You see a cauldron bubbling…\n")
-    time.sleep(1)
-    print("You hear a faint crackling sound of whooshes and sparkles.\n\n\n")
-    time.sleep(2)
-    print("Through the dark, eerie night, you see shelves lined with vials…\n")
-    time.sleep(1)
-    print("At last! You saw the kingdom’s top witch…\n\n\n")
-    time.sleep(2)
-    print("She turns to you, eyes gleaming with curiosity…\n")
-    time.sleep(1)
-    print("“Ah, just in time!” – The witch said…\n")
-    time.sleep(1)
-    print("\"I require assistance to perfect my latest creation\"" + "\n")
-    time.sleep(1)
-    print("\"I need your brain power to help me balance the chemicals I’m gonna use.\""+"\n\n\n")
-    time.sleep(2)
-    print("You have no choice but to comply, as she said she would turn you into a spoon if you don’t comply…\n")
-    time.sleep(1)
-    print("The King had told you, before you left, to comply to the witch when you are being threathened…")
-    input("\n\nPress Enter to Continue")
+    if storymode == True:
+        print("As you enter the Witch’s lair, the air smelt of the scent of herbs…\n")
+        time.sleep(1)
+        print("You see a cauldron bubbling…\n")
+        time.sleep(1)
+        print("You hear a faint crackling sound of whooshes and sparkles.\n\n\n")
+        time.sleep(2)
+        print("Through the dark, eerie night, you see shelves lined with vials…\n")
+        time.sleep(1)
+        print("At last! You saw the kingdom’s top witch…\n\n\n")
+
+        print("""
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⡆⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡾⣼⣿⡇⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⢣⣿⣿⡇⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡼⠏⣼⣿⣿⣿⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⣿⣿⣿⢹⣿⢻⣿⣿⣿⣦⣄⠀
+    ⠀⣠⣤⣄⠀⠀⠀⠀⠀⠀⠀⣸⠟⠛⠿⠶⢾⣿⣿⣿⣿⡿⠗
+    ⠘⢿⣿⣿⣿⣦⡀⠀⠀⠀⢀⣿⠐⡀⠀⠰⠘⣿⣿⣿⣿⡄⠀
+    ⠀⠀⠈⠉⠛⠻⠿⣶⣶⠄⢸⣿⣧⣄⣀⠀⢀⣿⣿⣿⣿⡇⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠈⠁⠉⢞⣿⣿⣿⣧⣾⣶⣿⣿⣿⠿⠟⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⣿⣿⣿⣿⣿⡿⠀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣷⣼⢄⡀⠀⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⠧⠈⠁⠀
+    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠈⠉⠀⠀⠀⠀
+    """)
+
+        input("\n\nPress Enter to Continue")
+        os.system('cls')
+
+        time.sleep(2)
+        print("She turns to you, eyes gleaming with curiosity…\n")
+        time.sleep(1)
+        print("“Ah, just in time!” – The witch said…\n")
+        time.sleep(1)
+        print("\"I require assistance to perfect my latest creation\"" + "\n")
+        time.sleep(1)
+        print("\"I need your brain power to help me balance the chemicals I’m gonna use.\""+"\n\n\n")
+        time.sleep(2)
+        print("You have no choice but to comply, as she said she would turn you into a spoon if you don’t comply…\n")
+        time.sleep(1)
+        print("The King had told you, before you left, to comply to the witch when you are being threathened…")
+
+        input("\n\nPress Enter to Continue")
     
     # Identify Number of Atoms - Challenge 1
     while True:
@@ -323,8 +471,6 @@ def level_chemistry():
                     print("\nERROR: Please enter an integer!")
                     time.sleep(2)
                     continue
-                 
-                time.sleep(2)
 
             if r2 == 0:
                 balancing_table()
@@ -336,7 +482,6 @@ def level_chemistry():
                     print("\nERROR: Please enter an integer!")
                     time.sleep(2)
                     continue
-                time.sleep(2)
 
             if p1 == 0:
                 balancing_table()
@@ -348,7 +493,6 @@ def level_chemistry():
                     print("\nERROR: Please enter an integer!")
                     time.sleep(2)
                     continue
-                time.sleep(2)
 
             if p2 == 0:
                 balancing_table()
@@ -360,7 +504,6 @@ def level_chemistry():
                     print("\nERROR: Please enter an integer!")
                     time.sleep(2)
                     continue
-                time.sleep(2)
 
             if p3 == 0:
                 balancing_table()
@@ -372,7 +515,6 @@ def level_chemistry():
                     print("\nERROR: Please enter an integer!")
                     time.sleep(2)
                     continue
-                time.sleep(2)
 
             if r1 > 0 and r2 > 0 and p1 > 0 and p2 > 0 and p3 > 0:
                 result = f"{r1} Na2CO3 + {r2} HCl → {p1} NaCl + {p2} H2O + {p3} CO2"
@@ -391,13 +533,16 @@ def level_chemistry():
     os.system('cls')
     print("Your Answer was: " + result + "\n\n")
     print("\n🎉 Congratulations, Mason! You have successfully balanced her potion! 🧪\n")
-    input("Press Enter to go back to the main menu")
+    time.sleep(2)
+    if storymode == False:
+        input("Press Enter to go back to the main menu")
 
 # Mathematics Level Function - YVAN
-def level_mathematics():
-    print("\n🏰 **Brick by Brick: The Castle Mason’s Quest** 🏰")
-    print("\nThe King has ordered a grand tower to be built, and as the royal mason, you must ensure its strength and stability!")
-    print("You will need to solve mathematical challenges to proceed.\n")
+def level_mathematics(storymode = False):
+    if storymode == False:
+        print("\n🏰 **Brick by Brick: The Castle Mason’s Quest** 🏰")
+        print("\nThe King has ordered a grand tower to be built, and as the royal mason, you must ensure its strength and stability!")
+        print("You will need to solve mathematical challenges to proceed.\n")
 
     # Challenge 1: Algebra - Calculating the height of the tower
     time.sleep(1)
@@ -447,7 +592,9 @@ def level_mathematics():
             time.sleep(1)
 
     print("\n🎉 Congratulations, Mason! You have successfully built the tower! 🏰\n")
-    input("Press Enter to go back to the main menu")
+    time.sleep(2)
+    if story_mode == False:
+        input("Press Enter to go back to the main menu")
 
 # Statistics Level Function - JUSTINE 
 def mean(numbers):
@@ -487,9 +634,11 @@ def level_statistics():
     
     if user_mean == correct_mean and user_median == correct_median and user_mode == correct_mode:
         print("\n🎉 Congratulations, Mason! your computations are correct and the king has found you useful. Your life is spared! 🏰\n")
+        time.sleep(2)
         input("Press Enter to go back to the main menu")
     else:
         print("Your answers are incorrect. The king has no use for you.")
+        time.sleep(2)
         input("Press Enter to go back to the main menu")
 
 # Main Function
