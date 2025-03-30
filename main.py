@@ -1,9 +1,13 @@
 """
 <DOCSTRING>
 
-Quest For Engenuity!
-(Dev Ops 3) 
+QUEST FOR ENGENUITY! - NOVEL RPG WITH ENGINEERING SUBJECT CONCEPTS
+
 PROLOGI - EQ3
+(Dev Ops 3) 
+- Cheng Roa, John Carlo
+- Chua, Yvan Dayniel
+- Lumilan, Justine
 
 Version: 0.1 (March 7, 2025)
 > Created Initial File
