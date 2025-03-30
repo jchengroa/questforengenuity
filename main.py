@@ -5,7 +5,7 @@ Quest For Engenuity!
 (Dev Ops 3) 
 PROLOGI - EQ3
 
-Version: 0.1 (March 7, 2025) - Cheng Roa
+Version: 0.1 (March 7, 2025)
 > Created Initial File
 
 Version: 0.2 (March 11, 2025) - Chua
@@ -13,7 +13,7 @@ Version: 0.2 (March 11, 2025) - Chua
 > Added Error Handling
 > Added User Input
 
-Version: 0.3 (March 18, 2025) - Cheng Roa
+Version: 0.3 (March 18, 2025) - Cheng Roa + Chua + Lumilan
 > Organized Codespace Layout (Added Main Function)
 > Added ASCII ART
 > Centered Elements and Changed Cursor
@@ -25,7 +25,7 @@ Version: 0.4 (March 25, 2025) - Chua
 Version: 0.5 (March 27, 2025) - Lumilan
 > Added Stats Level
 
-Version: 0.5.1 (March 27, 2025) - Cheng Roa
+Version: 0.5.1 (March 27, 2025) - Small Update
 > Updated ASCII Art
 > Organized Codespace
 
@@ -46,26 +46,40 @@ Version: 0.6.2 (March 29, 2025) - Small Update
 > Fixed functions to work with storymode
 > Removed uneccessary variables and functions
 
+Version: 0.7 (March 30, 2025) - Cheng Roa
+> Reworked and completed the storymode structure
+> Reworked and completed level selector
+> Reworked different levels to work with storymode
+> Fixed bugs while adding storymode
+> Fixed error in stats level
+> Optimization: Organized codespace
+> Polished and Ready for Release!
+
 """
 
 # Import System Files
+
 import os
 import statistics
 import time
 import random
 
 # Global Variables
+
 try:
     term_width = os.get_terminal_size().columns
 except Exception:
     term_width = 65
 
 # General Functions
+
 def art():
+
     try:
         term_width = os.get_terminal_size().columns
     except Exception:
         term_width = 65
+
     print("")
     print(r"     \_\           ___                  _      __                  ".center(term_width))
     print(r"    (_**)         / _ \ _   _  ___  ___| |_   / _| ___  _ __       ".center(term_width))
@@ -79,6 +93,7 @@ def art():
     print(r"                             |___/                        |___/   ".center(term_width))
 
 def menubox(selector):
+
     try:
         term_width = os.get_terminal_size().columns
     except Exception:
@@ -86,21 +101,27 @@ def menubox(selector):
         
     if selector == 1:
         print(r"+----------------------------------------+".center(term_width))
-        print(f"|{"(1)  Play Game":^40}|".center(term_width))
-        print(f"|{"(2)  Level Selector":^40}|".center(term_width))
-        print(f"|{"(3)  Help":^40}|".center(term_width))
-        print(f"|{"(4)  Exit":^40}|".center(term_width))
+        print(r"|                                        |".center(term_width))
+        print(f"|{"(1)  Play Game      ":^40}|".center(term_width))
+        print(f"|{"(2)  Level Selector ":^40}|".center(term_width))
+        print(f"|{"(3)  Help           ":^40}|".center(term_width))
+        print(f"|{"(4)  Exit           ":^40}|".center(term_width))
+        print(r"|                                        |".center(term_width))
         print(r"+----------------------------------------+".center(term_width))
     elif selector == 2:
-        print(r"Choose Your Learning Path:".center(term_width))
+        print(r"Select Level:".center(term_width))
         print(r"+--------------------------------------+".center(term_width))
+        print(r"|                                      |".center(term_width))
         print(r"|           (1)  Mathematics           |".center(term_width))
         print(r"|           (2)  Chemistry             |".center(term_width))
         print(r"|           (3)  Statistics            |".center(term_width))
+        print(r"|                                      |".center(term_width))
         print(r"|        Press Enter To Go Back        |".center(term_width))
+        print(r"|                                      |".center(term_width))
         print(r"+--------------------------------------+".center(term_width))
 
 def level_selector():
+
     os.system('cls')
     
     art()
@@ -109,16 +130,46 @@ def level_selector():
 
     choice = input(">>  ")
 
-    if choice == '1':
+    if choice == '1': # User Picks Math
         os.system('cls')
+        print("\n🏰 **Brick by Brick: The Castle Mason’s Quest** 🏰")
+        print("\nThe King has ordered a grand tower to be built, and as the royal mason, you must ensure its strength and stability!")
+        print("You will need to solve mathematical challenges to proceed.\n")
+
         level_mathematics()
-    elif choice == '2':
+
+        print("\n🎉 Congratulations, Mason! You have successfully built the tower! 🏰\n")
+
+        time.sleep(2)
+        input("Press Enter to go back to the main menu")
+    elif choice == '2': # User Picks Chem
         os.system('cls')
-        level_chemistry()
-    elif choice == '3':
+        print("\n🧉 **Gold & Glory: The Treasurer's Ultimate Dilemma** 🧈")
+        print("\nYour task is to balance these chemicals perfectly to ensure the potion succeeds.\n\n\n")
+
+        resultchem = level_chemistry()
+        
+        print("Your Answer was: " + resultchem + "\n\n")
+        print("\n🎉 Congratulations, Mason! You have successfully balanced her potion! 🧪\n")
+
+        time.sleep(2)
+        input("Press Enter to go back to the main menu")
+    elif choice == '3': # User Picks Stats
         os.system('cls')
-        level_statistics()
-    else:
+        print("\n🪄 **Elixers & Enchantments: The Witch's Apprentice** ✨")
+        print("Welcome to the GOLD MINE! The King wants you to compute the mean, median, and mode of a list of all the gold in the kingdom.\n")
+        print(f"Find the Mean, Median, and Mode of the following list of numbers to prove your worth to the king, If there is no mode input \"N/A\".")
+
+        resultstats = level_statistics()
+
+        if resultstats == 1:
+            print("\n🎉 Congratulations, Mason! your computations are correct and the king has found you useful. Your life is spared! 🏰\n")
+        elif resultstats == 0:
+            print("\nYour answers are incorrect. The king has no use for you.\n")
+
+        time.sleep(2)
+        input("Press Enter to go back to the main menu")
+    else: # Returns to Main Menu
         return 0
 
 def help_section():
@@ -167,167 +218,412 @@ def help_section():
          Enter the precise answer in each measures, calculator level of accuracy.
 
          Do not input anything else
+    
+                        Quest for Engenuity!
+
+                        Version: 0.7
+
+                        A PROLOGI Project created by Dev Ops 3
+                        - Cheng Roa, John Carlo
+                        - Chua, Yvan Dayniel
+                        - Lumilan, Justine
+
+                        Presented to Mr. John Vincent P. Cortez
     """)
+
     input("Press Enter to Go Back...")
 
 # Story Mode Function
 def story_mode():
+
     try:
         term_width = os.get_terminal_size().columns
     except Exception:
         term_width = 65
+
+    # Introduction Story
+
     os.system('cls')
-    print("The Kingdom of Numeria is thriving, ruled by a powerful but exacting king.\n\n")
-    print(r"""
-   /\                                                        /\
-  |  |                                                      |  |
- /----\                                                    /----\
-[______]                                                  [______]
- |    |         _____                        _____         |    |
- |[]  |        [     ]                      [     ]        |  []|
- |    |       [_______][ ][ ][ ][][ ][ ][ ][_______]       |    |
- |    [ ][ ][ ]|     |  ,----------------,  |     |[ ][ ][ ]    |
- |             |     |/'    ____..____    '\|     |             |
-  \  []        |     |    /'    ||    '\    |     |        []  /
-   |      []   |     |   |o     ||     o|   |     |  []       |
-   |           |  _  |   |     _||_     |   |  _  |           |
-   |   []      | (_) |   |    (_||_)    |   | (_) |       []  |
-   |           |     |   |     (||)     |   |     |           |
-   |           |     |   |      ||      |   |     |           |
- /''           |     |   |o     ||     o|   |     |           ''\
-[_____________[_______]--'------''------'--[_______]_____________]
-""".center(term_width))
-    input("Press Enter to Continue")
+    print(r"             _,._                               ".center(term_width))
+    print(r"           ,'   ,`-.                            ".center(term_width))
+    print(r"|.        /     |\  `.                          ".center(term_width))
+    print(r"\ \      (  ,-,-` ). `-._ __                    ".center(term_width))
+    print(r" \ \      \|\,'     `\  /'  `\                  ".center(term_width))
+    print(r"  \ \      ` |, ,  /  \ \     \                 ".center(term_width))
+    print(r"   \ \         `,_/`, /\,`-.__/`.               ".center(term_width))
+    print(r"    \ \            | ` /    /    `-._           ".center(term_width))
+    print(r"     \\\           `-/'    /         `-.        ".center(term_width))
+    print(r"      \\`/ _______,-/_   /'             \       ".center(term_width))
+    print(r"     ---'`|       |`  ),' `---.  ,       |      ".center(term_width))
+    print(r"      \..-`--..___|_,/          /       /       ".center(term_width))
+    print(r"                 |    |`,-,...,/      ,'        ".center(term_width))
+    print(r"                 \    | |_|   /     ,' __  --'',".center(term_width))
+    print(r"                  |___|/  |, /  __ /-''  `'`)  |".center(term_width))
+    print(r"               _,-'   ||__\ /,-' /     _,.--|  (".center(term_width))
+    print(r"            .-'       )   `(_   / _,.-'  ,-' _,/".center(term_width))
+    print(r"             `-------'       `--''       `'''   ".center(term_width))
+    print("\n\n")
+
+    equallength = "="*107
+    print(equallength.center(term_width))
+    print(f"|{"The Kingdom of Numeria is thriving, ruled by a powerful but exacting king.":^105}|".center(term_width))
+    print(f"|{"You, the Royal Mason, have long served under his command.":^105}|".center(term_width))
+    print(f"|{"Ensuring the kingdom’s governance and peace remain protected and strong.":^105}|".center(term_width))
+    print(f"|{"As you bow down to him to reveive his order, You noticed the king furious!":^105}|".center(term_width))
+    print(equallength.center(term_width))
+
+    input("\nPress Enter to Continue")
     os.system('cls')
-    print("You, the Royal Mason, have long served under his command, ensuring the kingdom’s structures remain strong.\n\n")
-    print(r"""
-      __      _
-     /__\__  //
-    //_____\///
-   _| /-_-\)|/_
-  (___\ _ //___\
-  (  |\\_/// * \\
-   \_| \_((*   *))
-   ( |__|_\\  *//
-   (o/  _  \_*_/
-   //\__|__/\
-  // |  | |  |
- //  _\ | |___)
-//  (___|
-""".center(term_width))
-    input("Press Enter to Continue")
-    os.system('cls')
-    print("The king demands that a tower of wisdom and power be built, one that will stand the test of time.")
-    print(r"""
-             _,._
-           ,'   ,`-.
-|.        /     |\  `.
-\ \      (  ,-,-` ). `-._ __
- \ \      \|\,'     `\  /'  `\
-  \ \      ` |, ,  /  \ \     \
-   \ \         `,_/`, /\,`-.__/`.
-    \ \            | ` /    /    `-._
-     \\\           `-/'    /         `-.
-      \\`/ _______,-/_   /'             \
-     ---'`|       |`  ),' `---.  ,       |
-      \..-`--..___|_,/          /       /
-                 |    |`,-,...,/      ,'     
-                 \    | |_|   /     ,' __  r-'',
-                  |___|/  |, /  __ /-''  `'`)  |  
-               _,-'   ||__\ /,-' /     _,.--|  (
-            .-'       )   `(_   / _,.-'  ,-' _,/
-             `-------'       `--''       `'''
-""".center(term_width))
-    input("Press Enter to Continue")
-    os.system('cls')
-    print("The King orders you to ensure that the tower’s foundation is mathematically sound.")
-    print(r"""
-                                                |>>>
-                                                |
-                                            _  _|_  _
-                                           |;|_|;|_|;|
-                                           \\.    .  /
-                                            \\:  .  /
-                                             ||:   |
-                                             ||:.  |
-                                             ||:  .|
-                                             ||:   |       \,/
-                                             ||: , |            /`\
-                                             ||:   |
-                                             ||: . |
-              __                            _||_   |
-     ____--`~    '--~~__            __ ----~    ~`---,              ___
--~--~                   ~---__ ,--~'                  ~~----_____-~'   `~----~~
-""".center(term_width))
+
+    # Start of Math Story
+
     os.system("cls")
-    level_mathematics(storymode = True)
-    os.system("cls")
-    level_chemistry(storymode = True)
+    print(r"                                                |>>>                            ".center(term_width))
+    print(r"                                                |                               ".center(term_width))
+    print(r"                                            _  _|_  _                           ".center(term_width))
+    print(r"                                           |;|_|;|_|;|                          ".center(term_width))
+    print(r"                                           \\.    .  /                          ".center(term_width))
+    print(r"                                            \\:  .  /                           ".center(term_width))
+    print(r"                                             ||:   |                            ".center(term_width))
+    print(r"                                             ||:.  |                            ".center(term_width))
+    print(r"                                             ||:  .|                            ".center(term_width))
+    print(r"                                             ||:   |       \,/                  ".center(term_width))
+    print(r"                                             ||: , |            /`\             ".center(term_width))
+    print(r"                                             ||:   |                            ".center(term_width))
+    print(r"                                             ||: . |                            ".center(term_width))
+    print(r"              __                            _||_   |                            ".center(term_width))
+    print(r"     ____--`~    '--~~__            __ ----~    ~`---,              ___         ".center(term_width))
+    print(r"-~--~                   ~---__ ,--~'                  ~~----_____-~'   `~----~~ ".center(term_width))
+    print("\n\n")
+
+    print(equallength.center(term_width))
+    print(f"|{"The king has orderd that a tower of wisdom and power be built.":^105}|".center(term_width))
+    print(f"|{"One that will stand the test of time!":^105}|".center(term_width))
+    print(f"|{"Using your knowledge of Mathematics, The king expects only the best!":^105}|".center(term_width))
+    print(f"|{"He wants it to be built in the newly occupied land...":^105}|".center(term_width))
+    print(f"|{"That will protect and guard the kingdom and its might!":^105}|".center(term_width))
+    print(equallength.center(term_width))
+
+    input("\nPress Enter to Continue")
     os.system('cls')
-    print("The King leads you deep into the Royal Gold Vaults, where mountains of wealth are stored.")
-    print(r"""
-                    .
-                   / \
-                  _\ /_
-        .     .  (,'v`.)  .     .
-        \)   ( )  ,' `.  ( )   (/
-         \`. / `-'     `-' \ ,'/
-          : '    _______    ' :
-          |  _,-'  ,-.  `-._  |
-          |,' ( )__`-'__( ) `.|
-          (|,-,'-._   _.-`.-.|)
-          /  /<( o)> <( o)>\  \
-          :  :     | |     :  :
-          |  |     ; :     |  |
-          |  |    (.-.)    |  |
-          |  |  ,' ___ `.  |  |
-          ;  |)/ ,'---'. \(|  :
-      _,-/   |/\(       )/\|   \-._
-_..--'.-(    |   `-'''-'   |    )-.`--.._
-         `.  ;`._________,':  ,'
-        ,' `/               \'`.
-             `------.------'          
-""".center(term_width))
+
+    level_mathematics()
+
+    # End of Math Story
+
+    os.system("cls")
+    print(r"                  [_]___[_]__[_]___[_]       ".center(term_width))
+    print(r"                  [__#__][__I_]__I__#]       ".center(term_width))
+    print(r"                  [_I_#_I__#[__]__#__]       ".center(term_width))
+    print(r"                     [_]_#_]__I_#_]          ".center(term_width))
+    print(r"                     [I_|/ _W_ \|#]          ".center(term_width))
+    print(r"                     [_I||{/~\}||_]          ".center(term_width))
+    print(r"                     [__]|/\_/\||#]          ".center(term_width))
+    print(r"                     [_I__I#___]__]          ".center(term_width))
+    print(r"                     [__I_#_I___#_]          ".center(term_width))
+    print(r"                     [#__I____]__I]          ".center(term_width))
+    print(r"      .-.            [__I_#__I__[_]          ".center(term_width))
+    print(r"   __|=|__          [_#_[__#_]__#]           ".center(term_width))
+    print(r"   (_/`-`\_)         [__#_I__[#_I_]          ".center(term_width))
+    print(r"   //\___/\\         [_I__]__#_I__]          ".center(term_width))
+    print(r"   <>/   \<>         [#__I__#_]__I]          ".center(term_width))
+    print(r"    \|_._|/          [_I#__I___I_#]    .:.   ".center(term_width))
+    print(r"     <_I_>           [#__I__]_#___]   -=o=-  ".center(term_width))
+    print(r"      |||            [_I__I#__]___]    ':'   ".center(term_width))
+    print(r"     /_|_\         \\[__]#___][__#]//, \|/   ".center(term_width))
+    print(r"^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ".center(term_width))
+    print("\n\n")
+
+    print(equallength.center(term_width))
+    print(f"|{"The king was satisfied with the tower, 'This should protect us for now' - He said.":^105}|".center(term_width))
+    print(f"|{"He ordered you to go back to the throne room, He has another mission for you!":^105}|".center(term_width))
+    print(equallength.center(term_width))
+
+    input("\nPress Enter to Continue")
+    os.system('cls')
+
+    # Start of Chemistry Story
+
+    os.system("cls")
+    print(r"                  _____                            ".center(term_width))
+    print(r"           .-'     '-.                             ".center(term_width))
+    print(r" _______ .'    __/  / '.      ___________          ".center(term_width))
+    print(r"   ___ ____    \/`-/    \  __________________      ".center(term_width))
+    print(r" __ _____      /) /      ;  _____ ---- _____       ".center(term_width))
+    print(r" ____  |       /_\\      |                         ".center(term_width))
+    print(r"       ;       _///      ;                         ".center(term_width))
+    print(r"        \     /_|      _/_                         ".center(term_width))
+    print(r"         '.   ______  |__||  ____                  ".center(term_width))
+    print(r" _______   '-/\     `-|__||___________             ".center(term_width))
+    print(r"____ ___    /__\      |__|| _______ ______         ".center(term_width))
+    print(r"___        /____\     |__||      _______           ".center(term_width))
+    print(r"          /___   \    |__||\                       ".center(term_width))
+    print(r"         /____`-.-\   |__|| \                      ".center(term_width))
+    print(r"        /___ __ ___\  |__|/  \       _________     ".center(term_width))
+    print(r"       /____| /|____\         \    ___  ______     ".center(term_width))
+    print(r"      /__   |_\|`.___\         \  ____ ____ ___    ".center(term_width))
+    print(r"     /___`-.| <|______\         \                  ".center(term_width))
+    print(r"    /__.-' _|__|_______\        _\_      __        ".center(term_width))
+    print(r"   /__________________  \ ..--""   `--.-' /\       ".center(term_width))
+    print(r"    /                 / /'               //\\      ".center(term_width))
+    print(r"   /_________________/.|________________/ //\\     ".center(term_width))
+    print(r"___||_ __ __ __ _ _||_ |_-__ _ __ _ __.-|/|/|_____ ".center(term_width))
+    print(r"   ||_|  |__|\ |_| || ||_| >|_|  |_| _|_|||/|      ".center(term_width))
+    print(r"   ||_|__|__| ||_|_||_||_|/_|_|__| |< |_||//|      ".center(term_width))
+    print(r"   ||_|< |__|.||_| || ||_|  |_|  |_|_\|_| //       ".center(term_width))
+    print(r"   ||_|_\|__| ||_|_||_||\|_/|_|__|_|__|_|//        ".center(term_width))
+    print(r"   ||_______|_||___||__|________________|/         ".center(term_width))
+    print(r"   || / / / / / / /||//|________________|          ".center(term_width))
+    print(r"  /||/_/_/_/_/_/_/_||/ /                           ".center(term_width))
+    print(r"  |__________________|/                            ".center(term_width))
+    print("\n\n")
+
+    print(equallength.center(term_width))
+    print(f"|{"The king wants you with your bravery to go to the Witch's lair.":^105}|".center(term_width))
+    print(f"|{"He wanted the potion that the witch has been working on for a while.":^105}|".center(term_width))
+    print(f"|{"He wants you to retrieve it to him!":^105}|".center(term_width))
+    print(equallength.center(term_width))
+
+    input("\nPress Enter to Continue")
+    os.system('cls')
+
+    os.system("cls")                       
+    print(r"           |       *     |                  ".center(term_width))
+    print(r"            | _  *                          ".center(term_width))
+    print(r"               * (     /      \    ___      ".center(term_width))
+    print(r"                  "     "        _/ /       ".center(term_width))
+    print(r"                 (   *  )    ___/   |       ".center(term_width))
+    print(r"                   )   *     _ o)'-./__     ".center(term_width))
+    print(r"                  *  _ )    (_, . $$$       ".center(term_width))
+    print(r"                  (  )   __ __ 7_ $$$$      ".center(term_width))
+    print(r"                   ( :  { _)  '---  $\      ".center(term_width))
+    print(r"              ______'___//__\   ____, \     ".center(term_width))
+    print(r"               )           ( \_/ _____\_    ".center(term_width))
+    print(r"             .'             \   \------''.  ".center(term_width))
+    print(r"             |='           '=|  |         ) ".center(term_width))
+    print(r"             |               |  |  .    _/  ".center(term_width))
+    print(r"              \    (. ) ,   /  /__I_____\   ".center(term_width))
+    print(r"               '._/_)_(\__.'   (__,(__,_]   ".center(term_width))
+    print(r"              @---()_.'---@                 ".center(term_width))
+    print("\n\n")
+
+    print(equallength.center(term_width))
+    print(f"|{"As you enter the Witch’s lair, the air smelt of the scent of herbs…":^105}|".center(term_width))
+    print(f"|{"You see a cauldron bubbling…":^105}|".center(term_width))
+    print(f"|{"You hear a faint crackling sound of whooshes and sparkles.":^105}|".center(term_width))
+    print(f"|{"Through the dark, eerie night, you see shelves lined with vials…":^105}|".center(term_width))
+    print(f"|{"At last! You saw the kingdom’s top witch.":^105}|".center(term_width))
+    print(equallength.center(term_width))
+
+    input("\nPress Enter to Continue")
+    os.system('cls')
+
+    os.system('cls')
+    print("\n\n")
+    print(equallength.center(term_width))
+    print(f"|{"She turns to you, eyes gleaming with curiosity…":^105}|".center(term_width))
+    print(f"|{"“Ah, just in time!” – The witch said…":^105}|".center(term_width))
+    print(f"|{"'I require assistance to perfect my latest creation'":^105}|".center(term_width))
+    print(f"|{"'I need your brain power to help me balance the chemicals I’m gonna use.'":^105}|".center(term_width))
+    print(f"|{"'You have no choice but to comply', as she said she would turn you into a spoon if you don’t comply…":^105}|".center(term_width))
+    print(f"|{"The King had told you, before you left, to comply to the witch when you are being threathened…":^105}|".center(term_width))
+    print(equallength.center(term_width))
+
+    input("\nPress Enter to Continue")
+    os.system('cls')
+
+    level_chemistry()
+
+    # End of Chem Story
+
+    os.system('cls')
+    print(r"      _____    ".center(term_width))
+    print(r"     `.___,'   ".center(term_width))
+    print(r"      (___)    ".center(term_width))
+    print(r"      < X >    ".center(term_width))
+    print(r"       ) (     ".center(term_width))
+    print(r"      /`-.\    ".center(term_width))
+    print(r"     /   X \   ".center(term_width))
+    print(r"    / _    _\  ".center(term_width))
+    print(r"   :,' `-.' `: ".center(term_width))
+    print(r"   |   X     | ".center(term_width))
+    print(r"   :     X   ; ".center(term_width))
+    print(r"    \       /  ".center(term_width))
+    print(r"     `.___.'   ".center(term_width))
+    print("\n\n")
+
+    print(equallength.center(term_width))
+    print(f"|{"As you exit her lair, you've managed to steal the potion...":^105}|".center(term_width))
+    print(f"|{"“The king was estatic! He Immediately sold it and made a lot of money.":^105}|".center(term_width))
+    print(equallength.center(term_width))
+
+    input("\nPress Enter to Continue")
+    os.system('cls')
+
+    # Statistics Story
+
+    os.system('cls')
+
+    print(r"                    .                     ".center(term_width))
+    print(r"                   / \                    ".center(term_width))
+    print(r"                  _\ /_                   ".center(term_width))
+    print(r"        .     .  (,'v`.)  .     .         ".center(term_width))
+    print(r"        \)   ( )  ,' `.  ( )   (/         ".center(term_width))
+    print(r"         \`. / `-'     `-' \ ,'/          ".center(term_width))
+    print(r"          : '    _______    ' :           ".center(term_width))
+    print(r"          |  _,-'  ,-.  `-._  |           ".center(term_width))
+    print(r"          |,' ( )__`-'__( ) `.|           ".center(term_width))
+    print(r"          (|,-,'-._   _.-`.-.|)           ".center(term_width))
+    print(r"          /  /<( o)> <( o)>\  \           ".center(term_width))
+    print(r"          :  :     | |     :  :           ".center(term_width))
+    print(r"          |  |     ; :     |  |           ".center(term_width))
+    print(r"          |  |    (.-.)    |  |           ".center(term_width))
+    print(r"          |  |  ,' ___ `.  |  |           ".center(term_width))
+    print(r"          ;  |)/ ,'---'. \(|  :           ".center(term_width))
+    print(r"      _,-/   |/\(       )/\|   \-._       ".center(term_width))
+    print(r"_..--'.-(    |   `-'''-'   |    )-.`--.._ ".center(term_width))
+    print(r"         `.  ;`._________,':  ,'          ".center(term_width))
+    print(r"        ,' `/               \'`.          ".center(term_width))
+    print(r"             `------.------'          '   ".center(term_width))
+    print(r"             '                            ".center(term_width))
+    print("\n\n")
+
+    print(equallength.center(term_width))
+    print(f"|{"The King leads you deep into the Royal Gold Vaults, where mountains of wealth are stored.":^105}|".center(term_width))
+    print(f"|{"He wants you to use your statistical knowledge to calculate the wealth that the kingdom has.":^105}|".center(term_width))
+    print(f"|{"This is the final test, as this will determine if you live or perish!":^105}|".center(term_width))
+    print(equallength.center(term_width))
+
     input("Press Enter to Continue")
     os.system('cls')
-    level_statistics()
+
+    result_storymode = level_statistics()
+
+    # The Ending
+
+    if result_storymode == 0: # LOSE
+        
+        os.system('cls')
+
+        print(r"                                                               o .,<>., o         ".center(term_width))
+        print(r"                                                               |\/\/\/\/|         ".center(term_width))
+        print(r"                                                               '========'         ".center(term_width))
+        print(r"                                                               (_ SSSSSSs         ".center(term_width))
+        print(r"                                                               )a'`SSSSSs         ".center(term_width))
+        print(r"                                                              /_   SSSSSS         ".center(term_width))
+        print(r"                                                              .=## SSSSS          ".center(term_width))
+        print(r"                                                              .####  SSSSs        ".center(term_width))
+        print(r"                                                              ###::::SSSSS        ".center(term_width))
+        print(r"                                                             .;:::''''SSS         ".center(term_width))
+        print(r"                                                            .:;:'  . .  \\        ".center(term_width))
+        print(r"                                                           .::/  '     .'|        ".center(term_width))
+        print(r"                                                          .::( .         |        ".center(term_width))
+        print(r"                                                          :::)           \        ".center(term_width))
+        print(r"                                                          /\(            /        ".center(term_width))
+        print(r"                                                         /)            ( |        ".center(term_width))
+        print(r"                                                       .'  \  .       ./ /        ".center(term_width))
+        print(r"                                                    _-'    |\  .        |         ".center(term_width))
+        print(r"                                  _..--..   .  /'---\      | ` |      . |         ".center(term_width))
+        print(r"          -=====================,' _     \=(*#(7.#####()   |  `/_..   , (         ".center(term_width))
+        print(r"                      _.-''``';'-''-) ,.  \ '  '+/// |   .'/   \  ``-.) \         ".center(term_width))
+        print(r"                    ,'  _.-  ((    `-'  `._\    `` \_/_.'  )    /`-._  ) |        ".center(term_width))
+        print(r"                  ,'\ ,'  _.'.`:-.    \.-'                 /   <_L   )'  |        ".center(term_width))
+        print(r"                _/   `._,' ,')`;  `-'`'                    |     L  /    /        ".center(term_width))
+        print(r"               / `.   ,' ,|_/ / \                          (    <_-'     \        ".center(term_width))
+        print(r"               \ / `./  '  / /,' \                        /|`         `. |        ".center(term_width))
+        print(r"               )\   /`._   ,'`._.-\                       |)            \'        ".center(term_width))
+        print(r"              /  `.'    )-'.-,' )__)                      |\            `|        ".center(term_width))
+        print(r"             : /`. `.._(--.`':`':/ \                      ) \             \       ".center(term_width))
+        print(r"             |::::\     ,'/::;-))  /                      ( )`.            |      ".center(term_width))
+        print(r"             ||:::::  . .::':  :`-(                       |/    .          |      ".center(term_width))
+        print(r"             ||::::|  . :|  |==[]=:                       .        -       \      ".center(term_width))
+        print(r"             |||:::|  : ||  :  |  |                      /\           `     |     ".center(term_width))
+        print(r" ___ ___     '|;:::|  | |'   \=[]=|                     /  \                \     ".center(term_width))
+        print(r"|   /_  ||``|||:::::  | ;    | |  |                     \_.'\_               `-.  ".center(term_width))
+        print(r":   \_``[]--[]|::::'\_;'     )-'..`._                 .-'\``:: ` .              \ ".center(term_width))
+        print(r" \___.>`''-.||:.__,'     SSt |_______`>              <_____:::.         . . \  _/ ".center(term_width))
+        print(r"                                                           `+a:f:......jrei'''    ".center(term_width))
+        print("\n\n")
+
+        print(equallength.center(term_width))
+        print(f"|{"The kingdom suffered, after the king's incorrect decisions based on your answers!":^105}|".center(term_width))
+        print(f"|{"":^105}|".center(term_width))
+        print(f"|{"You Perished!":^105}|".center(term_width))
+        print(equallength.center(term_width))
+
+        input("Press Enter to go back to the main menu")
+        os.system('cls')
+
+    if result_storymode == 1: # WIN
+
+        os.system('cls')
+
+        print(r"                    |>>>                        |>>>                           ".center(term_width))
+        print(r"                    |                           |                              ".center(term_width))
+        print(r"                _  _|_  _                   _  _|_  _                          ".center(term_width))
+        print(r"               | |_| |_| |                 | |_| |_| |                         ".center(term_width))
+        print(r"               \  .      /                 \ .    .  /                         ".center(term_width))
+        print(r"                \    ,  /                   \    .  /                          ".center(term_width))
+        print(r"                 | .   |_   _   _   _   _   _| ,   |                           ".center(term_width))
+        print(r"                 |    .| |_| |_| |_| |_| |_| |  .  |                           ".center(term_width))
+        print(r"                 | ,   | .    .     .      . |    .|                           ".center(term_width))
+        print(r"                 |   . |  .     . .   .  ,   |.    |                           ".center(term_width))
+        print(r"     ___----_____| .   |.   ,  _______   .   |   , |---~_____                  ".center(term_width))
+        print(r"_---~            |     |  .   /+++++++\    . | .   |         ~---_             ".center(term_width))
+        print(r"                 |.    | .    |+++++++| .    |   . |              ~-_          ".center(term_width))
+        print(r"              __ |   . |   ,  |+++++++|.  . _|__   |                 ~-_       ".center(term_width))
+        print(r"     ____--`~    '--~~__ .    |++++ __|----~    ~`---,              ___^~-__   ".center(term_width))
+        print(r"-~--~                   ~---__|,--~'                  ~~----_____-~'   `~----~ ".center(term_width))
+        print("\n\n")
+
+        print(equallength.center(term_width))
+        print(f"|{"The kingdom grows richer, after the king's correct decisions based on your answers!":^105}|".center(term_width))
+        print(f"|{"":^105}|".center(term_width))
+        print(f"|{"You Win!":^105}|".center(term_width))
+        print(equallength.center(term_width))
+
+        input("Press Enter to go back to the main menu")
+        os.system('cls')
 
 # Chemistry Level Function - JOHN CARLO
 def question_atoms(element, ans, side="reactant"):
-    os.system('cls')
-    print("\n🧉 **Gold & Glory: The Treasurer's Ultimate Dilemma** 🧈")
-    print("\nYour task is to balance these chemicals perfectly to ensure the potion succeeds.\n\n\n")
-    
+
     try:
         term_width = os.get_terminal_size().columns
     except Exception:
         term_width = 65
+    
+    print("\n⚛️ **Challenge 1: Identify Atoms in Chemical Equation** 🔬\n\n")
     
     print(r"+-------------------------------------------------------------------------------------------+".center(term_width))
     print(r"| The witch puts in Sodium Carbonate (Na2CO3) and Hydrochloric Acid (HCl) into the cauldron |".center(term_width))
     print(r"+-------------------------------------------------------------------------------------------+".center(term_width))
     print(r"| It resulted in Sodium Chloride (NaCl), Water (H2O), and Carbon Dioxide Gas (CO2)          |".center(term_width))
     print(r"+-------------------------------------------------------------------------------------------+".center(term_width)+"\n\n")
+
     answer = input(f"Identify the number of atoms of {element} from the {side} side:\n>> ")
     if answer == ans:
         print("\n✅ Correct!")
         time.sleep(1)
+        os.system('cls')
         return 1
     else:
         print("\n❌ Incorrect! Try again.")
         time.sleep(1)
+        os.system('cls')
         return 0
 
 def balancing_table():
+
     os.system('cls')
-    print("\n🧉 **Gold & Glory: The Treasurer's Ultimate Dilemma** 🧈")
-    print("\nYour task is to balance these chemicals perfectly to ensure the potion succeeds.\n\n\n")
     
     try:
         term_width = os.get_terminal_size().columns
     except Exception:
         term_width = 65
-        
+    
+    print("\n⚗️ **Challenge 2: Balance Chemical Equation** 👩‍🔬\n\n")
+
     print(r"+------------------------------------------------------+".center(term_width))
     print(r"| Unbalanced Equation: Na2Co3 + HCl → NaCl + H2O + CO2 |".center(term_width))
     print(r"+------------------------------------------------------+".center(term_width))
@@ -342,56 +638,10 @@ def balancing_table():
     print(r"| Cl (Chlorine) |         1 |        1 |".center(term_width))
     print(r"+---------------+-----------+----------+".center(term_width))
 
-def level_chemistry(storymode = "False"):
-    # Back Story
-    if storymode == True:
-        print("As you enter the Witch’s lair, the air smelt of the scent of herbs…\n")
-        time.sleep(1)
-        print("You see a cauldron bubbling…\n")
-        time.sleep(1)
-        print("You hear a faint crackling sound of whooshes and sparkles.\n\n\n")
-        time.sleep(2)
-        print("Through the dark, eerie night, you see shelves lined with vials…\n")
-        time.sleep(1)
-        print("At last! You saw the kingdom’s top witch…\n\n\n")
+def level_chemistry():
 
-        print("""
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⠀⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣿⣿⡆⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡾⣼⣿⡇⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⢣⣿⣿⡇⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⡼⠏⣼⣿⣿⣿⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠰⣿⣿⣿⢹⣿⢻⣿⣿⣿⣦⣄⠀
-    ⠀⣠⣤⣄⠀⠀⠀⠀⠀⠀⠀⣸⠟⠛⠿⠶⢾⣿⣿⣿⣿⡿⠗
-    ⠘⢿⣿⣿⣿⣦⡀⠀⠀⠀⢀⣿⠐⡀⠀⠰⠘⣿⣿⣿⣿⡄⠀
-    ⠀⠀⠈⠉⠛⠻⠿⣶⣶⠄⢸⣿⣧⣄⣀⠀⢀⣿⣿⣿⣿⡇⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠈⠁⠉⢞⣿⣿⣿⣧⣾⣶⣿⣿⣿⠿⠟⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⣿⣿⣿⣿⣿⡿⠀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣷⣼⢄⡀⠀⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⠧⠈⠁⠀
-    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠁⠀⠀⠈⠉⠀⠀⠀⠀
-    """)
-
-        input("\n\nPress Enter to Continue")
-        os.system('cls')
-
-        time.sleep(2)
-        print("She turns to you, eyes gleaming with curiosity…\n")
-        time.sleep(1)
-        print("“Ah, just in time!” – The witch said…\n")
-        time.sleep(1)
-        print("\"I require assistance to perfect my latest creation\"" + "\n")
-        time.sleep(1)
-        print("\"I need your brain power to help me balance the chemicals I’m gonna use.\""+"\n\n\n")
-        time.sleep(2)
-        print("You have no choice but to comply, as she said she would turn you into a spoon if you don’t comply…\n")
-        time.sleep(1)
-        print("The King had told you, before you left, to comply to the witch when you are being threathened…")
-
-        input("\n\nPress Enter to Continue")
-    
     # Identify Number of Atoms - Challenge 1
+
     while True:
         question_1 = question_atoms("Sodium (Na)", "2")
         if question_1 == 1:
@@ -453,7 +703,8 @@ def level_chemistry(storymode = "False"):
         else: 
             continue
 
-    # Balance Equation - Final Challenge
+    # Balance Equation - Challenge 2
+
     while True:
         r1 = 0
         r2 = 0
@@ -530,21 +781,14 @@ def level_chemistry(storymode = "False"):
             continue
 
     # Result
-    os.system('cls')
-    print("Your Answer was: " + result + "\n\n")
-    print("\n🎉 Congratulations, Mason! You have successfully balanced her potion! 🧪\n")
-    time.sleep(2)
-    if storymode == False:
-        input("Press Enter to go back to the main menu")
+
+    return result 
 
 # Mathematics Level Function - YVAN
-def level_mathematics(storymode = False):
-    if storymode == False:
-        print("\n🏰 **Brick by Brick: The Castle Mason’s Quest** 🏰")
-        print("\nThe King has ordered a grand tower to be built, and as the royal mason, you must ensure its strength and stability!")
-        print("You will need to solve mathematical challenges to proceed.\n")
+def level_mathematics():
 
     # Challenge 1: Algebra - Calculating the height of the tower
+
     time.sleep(1)
     print("\n🧱 **Challenge 1: Algebra - Tower Height Calculation** 🧱")
     print("The King wants the tower to be 5 times as tall as the castle gate (which is 12 meters).")
@@ -561,6 +805,7 @@ def level_mathematics(storymode = False):
             time.sleep(1)
 
     # Challenge 2: Differentiation - Rate of brick stacking
+
     print("\n📐 **Challenge 2: Differentiation - Speed of Construction** 📐")
     print("The workers stack bricks at a rate of f(x) = 3x^2 + 2x - 5 bricks per hour.")
     print("Find the rate of stacking at x = 4 hours.")
@@ -576,6 +821,7 @@ def level_mathematics(storymode = False):
             time.sleep(1)
 
     # Challenge 3: Matrices - Structural Integrity Check
+
     print("\n🏗 **Challenge 3: Matrices - Load Distribution** 🏗")
     print("The weight distribution of the tower is represented by matrix A:")
     print("\nA = [ 2  4 ]\n    [ 1  3 ]")
@@ -591,12 +837,8 @@ def level_mathematics(storymode = False):
             print("❌ Incorrect! Try again.")
             time.sleep(1)
 
-    print("\n🎉 Congratulations, Mason! You have successfully built the tower! 🏰\n")
-    time.sleep(2)
-    if story_mode == False:
-        input("Press Enter to go back to the main menu")
-
 # Statistics Level Function - JUSTINE 
+
 def mean(numbers):
     return sum(numbers) / len(numbers)
 
@@ -610,38 +852,49 @@ def mode(numbers):
         return "N/A"
 
 def level_statistics():
-    print("\n🪄 **Elixers & Enchantments: The Witch's Apprentice** ✨")
-    print("Welcome to the GOLD MINE! The King wants you to compute the mean, median, and mode of a list of all the gold in the kingdom.")
-    time.sleep(2)
-    print(f"Find the Mean, Median, and Mode of the following list of numbers to prove your worth to the king, If there is no mode input \"N/A\".")
-    time.sleep(2)   
-    
+
     numbers = [random.randint(1, 10) for _ in range(10)]
-    print(f"\nNumbers: {numbers}")
-    
-    user_mean = float(input("Enter the mean: "))
-    user_median = float(input("Enter the median: "))
-    user_mode = float(input("Enter the mode: "))
-    
-    correct_mean = mean(numbers)
-    correct_median = median(numbers)
-    correct_mode = mode(numbers)
+
+    while True:
+        print("\n🧮 **Challenge: Measures of Central Tendency** 📖")
+        print("If there is no mode, Enter \"N/A\"\n\n")
+
+        stats_numbers = f"| Numbers: {numbers} |"
+        border_stats = "="*len(stats_numbers)
+        print(border_stats.center(term_width))
+        print(stats_numbers.center(term_width))
+        print(border_stats.center(term_width))
+
+        try:
+            correct_mean = mean(numbers)
+            correct_median = median(numbers)
+            correct_mode = mode(numbers)
+            
+            user_mean = float(input("Enter the mean: "))
+            user_median = float(input("Enter the median: "))
+            if correct_mode == "N/A":
+                user_mode = input("Enter the mode: ")
+            else:
+                user_mode = float(input("Enter the mode: "))
+            break
+        except Exception:
+            os.system('cls')
+            continue
     
     print("\nResults:")
     print(f"Your mean: {user_mean} (Correct: {correct_mean})")
     print(f"Your median: {user_median} (Correct: {correct_median})")
     print(f"Your mode: {user_mode} (Correct: {correct_mode})")
+
+    time.sleep(3)
     
     if user_mean == correct_mean and user_median == correct_median and user_mode == correct_mode:
-        print("\n🎉 Congratulations, Mason! your computations are correct and the king has found you useful. Your life is spared! 🏰\n")
-        time.sleep(2)
-        input("Press Enter to go back to the main menu")
+        return 1
     else:
-        print("Your answers are incorrect. The king has no use for you.")
-        time.sleep(2)
-        input("Press Enter to go back to the main menu")
+        return 0
 
 # Main Function
+
 def main():
 
     invalidinput = False
@@ -659,9 +912,9 @@ def main():
         choice = input(">>  ")
 
         if choice == "1":
-            invalidinput = True
+            invalidinput = False
             story_mode()
-        if choice == "2":
+        elif choice == "2":
             invalidinput = False
             os.system('cls')
             level_selector()
@@ -671,19 +924,20 @@ def main():
             help_section()
         elif choice == "4":
             invalidinput = False
-            os.system('cls')
-            confirmation = input("\nAre you sure?\nType 'Yes' to exit\n\n>> ")
-            if confirmation == "Yes":
+            while True:
                 os.system('cls')
-                time.sleep(1)
-                print("\nExiting game. See you next time!\n")
-                time.sleep(1)
-                break
-            else:
-                continue
+                confirmation = input("\nAre you sure?\nType 'Yes' to exit\n\n>> ")
+                if confirmation == "Yes":
+                    os.system('cls')
+                    print("\nExiting game. See you next time!\n")
+                    break
+                else:
+                    continue
+            break
+        elif choice == "exit":
+            break
         else:
             invalidinput = True
 
 if __name__ == "__main__":
     main()
-    
