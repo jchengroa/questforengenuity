@@ -59,6 +59,10 @@ Version: 0.7 (March 30, 2025) - Cheng Roa
 > Optimization: Organized codespace
 > Polished and Ready for Release!
 
+Version: 0.7.1 (April 7, 2025) - Small Update
+> Added Comments throughout the codespace
+> Fixed behavior for the exit confirmation page
+
 """
 
 # Import System Files
@@ -70,14 +74,14 @@ import random
 
 # Global Variables
 
-try:
-    term_width = os.get_terminal_size().columns
+try: 
+    term_width = os.get_terminal_size().columns # Gets the size of the terminal and store it in term_width
 except Exception:
-    term_width = 65
+    term_width = 65 # If the get_terminal_size() method doesn't work, it defaults to 65.
 
 # General Functions
 
-def art():
+def art(): # Displays the Logo for the Project
 
     try:
         term_width = os.get_terminal_size().columns
@@ -96,7 +100,7 @@ def art():
     print(r" -,,,,,,,,- ,,-  |_____|_| |_|\__, |\___|_| |_|\__,_|_|\__|\__, (_)".center(term_width))
     print(r"                             |___/                        |___/   ".center(term_width))
 
-def menubox(selector):
+def menubox(selector): # Displays the main menu and the level selector depending on the argument
 
     try:
         term_width = os.get_terminal_size().columns
@@ -124,7 +128,7 @@ def menubox(selector):
         print(r"|                                      |".center(term_width))
         print(r"+--------------------------------------+".center(term_width))
 
-def level_selector():
+def level_selector(): # The Logic of the Level Selector, a menu that calls levels
 
     os.system('cls')
     
@@ -176,7 +180,7 @@ def level_selector():
     else: # Returns to Main Menu
         return 0
 
-def help_section():
+def help_section(): # The Helpdoc of the program
     
     try:
         term_width = os.get_terminal_size().columns
@@ -238,7 +242,7 @@ def help_section():
     input("Press Enter to Go Back...")
 
 # Story Mode Function
-def story_mode():
+def story_mode(): # The Story Mode
 
     try:
         term_width = os.get_terminal_size().columns
@@ -590,7 +594,7 @@ def story_mode():
         os.system('cls')
 
 # Chemistry Level Function - JOHN CARLO
-def question_atoms(element, ans, side="reactant"):
+def question_atoms(element, ans, side="reactant"): # A function as a format for the first chemistry challenge
 
     try:
         term_width = os.get_terminal_size().columns
@@ -617,7 +621,7 @@ def question_atoms(element, ans, side="reactant"):
         os.system('cls')
         return 0
 
-def balancing_table():
+def balancing_table(): # Displays the Balancing Table and the Chemical Equation
 
     os.system('cls')
     
@@ -642,7 +646,7 @@ def balancing_table():
     print(r"| Cl (Chlorine) |         1 |        1 |".center(term_width))
     print(r"+---------------+-----------+----------+".center(term_width))
 
-def level_chemistry():
+def level_chemistry(): # The Chemistry Level
 
     # Identify Number of Atoms - Challenge 1
 
@@ -789,7 +793,7 @@ def level_chemistry():
     return result 
 
 # Mathematics Level Function - YVAN
-def level_mathematics():
+def level_mathematics(): # The Mathematics Level
 
     # Challenge 1: Algebra - Calculating the height of the tower
 
@@ -843,19 +847,19 @@ def level_mathematics():
 
 # Statistics Level Function - JUSTINE 
 
-def mean(numbers):
+def mean(numbers): # Calculates the Mean of passed numbers
     return sum(numbers) / len(numbers)
 
-def median(numbers):
+def median(numbers): # Calculates the Median of passed numbers
     return statistics.median(numbers)
 
-def mode(numbers):
+def mode(numbers): # Calculates the Mode of passed numbers, returns N/A if none
     try:
         return statistics.mode(numbers)
     except statistics.StatisticsError:
         return "N/A"
 
-def level_statistics():
+def level_statistics(): # The Statistics Level
 
     numbers = [random.randint(1, 10) for _ in range(10)]
 
@@ -893,15 +897,16 @@ def level_statistics():
     time.sleep(3)
     
     if user_mean == correct_mean and user_median == correct_median and user_mode == correct_mode:
-        return 1
+        return 1 # Returns win to storymode
     else:
-        return 0
+        return 0 # Returns lose to storymode
 
 # Main Function
 
 def main():
 
     invalidinput = False
+    exitprogram = False
 
     while True:
         os.system('cls')
@@ -915,18 +920,18 @@ def main():
 
         choice = input(">>  ")
 
-        if choice == "1":
+        if choice == "1": # Story Mode
             invalidinput = False
             story_mode()
-        elif choice == "2":
+        elif choice == "2": # Level Selector
             invalidinput = False
             os.system('cls')
             level_selector()
-        elif choice == "3":
+        elif choice == "3": # Help Doc
             invalidinput = False
             os.system('cls')
             help_section()
-        elif choice == "4":
+        elif choice == "4": # Exit, with confirmation
             invalidinput = False
             while True:
                 os.system('cls')
@@ -934,10 +939,12 @@ def main():
                 if confirmation == "Yes":
                     os.system('cls')
                     print("\nExiting game. See you next time!\n")
+                    exitprogram = True
                     break
                 else:
-                    continue
-            break
+                    break
+            if exitprogram == True:
+                break
         elif choice == "exit":
             break
         else:
